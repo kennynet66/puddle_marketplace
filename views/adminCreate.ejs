@@ -1,0 +1,59 @@
+<%- include('partials/adminheader'); -%>
+
+<header>
+    <title> puddle | create admin</title>
+    <div class="content">
+        <h1>Create Admin</h1>
+        <form>
+            <div class="input_field">
+                <label for="full_name">Full name: </label><br>
+                <input type="full_name" name="full_name">
+            </div>
+            <div class="input_field">
+                <label for="email">Email: </label><br>
+                <input type="text" name="email">
+            </div>
+            <div class="input_field">
+                <label for="password">Password: </label><br>
+                <input type="password" name="password">
+            </div>
+            <div class="error div"></div>
+            <button>Sign up</button>
+            <a class="tag" href="/admin">Back</a>
+        </form>
+    </div>
+</header>
+
+<script>
+    const form = document.querySelector('form');
+    const errorDiv = document.querySelector('.error.div');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        //reset errors
+        errorDiv.textContent='';
+
+        const full_name = form.full_name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        try {
+            const res = await fetch('/admin/create',{
+                method: 'POST',
+                body: JSON.stringify({ email, password, full_name }),
+                headers: { 'content-Type' : 'application/json' }
+            });
+            const data = await res.json();
+            if (data.errors) {
+                errorDiv.innerHTML = `${data.errors.email}<br> ${data.errors.password}<br> ${data.errors.full_name}`;
+            }
+
+            if (data.admin) {
+                location.assign('/admin');
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    })
+</script>

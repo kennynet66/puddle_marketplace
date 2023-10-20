@@ -1,0 +1,60 @@
+<%- include('partials/adminheader'); -%>
+
+<header>
+    <title>puddle | admin</title>
+    <% if (admin) {%>
+        <div class="admin_details">
+            <h1>Admin details</h1>
+            <hr>
+            <h3>Fullname: <%= admin.full_name %></h3>
+            <h3>email: <%= admin.email %></h3>
+        </div><hr>
+    <% } %>
+    <div class="admin_card">
+        <% if (items && items.length > 0) { %>
+          <% items.forEach(item => { %>
+            <div class="admin_content">
+              <h3>Item Id: <%= item._id %></h3>
+              <h3>Item: <%= item.item_name %></h3>
+              <p>Price: <%= item.price %></p>
+              <p>Description: <%= item.description %></p>
+              <p>Category: <%= item.category %></p>
+              <div class="del_div">
+                <a href="#" class="delete" data-item_id="<%= item._id %>">delete</a>
+                <a href="#" class="edit" data-item_id="<%= item._id %>">edit</a>
+              </div>
+            </div>
+          <% })} %>
+        </div>
+      </header>
+      
+      
+</header>
+<script>
+    const deleteButtons = document.querySelectorAll('.delete');
+  
+    deleteButtons.forEach(deleteButton => {
+      deleteButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+  
+        const _id = deleteButton.getAttribute('data-item_id');
+  
+        try {
+          const res = await fetch('/item/delete', {
+            method: 'PUT',
+            body: JSON.stringify({ _id }),
+            headers: { 'Content-Type': 'application/json' },
+          });
+          const data = await res.json();
+  
+          if (data.errors) {
+          } else if (data.deletedItem) {
+            location.reload();
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      });
+    });
+  </script>
+  

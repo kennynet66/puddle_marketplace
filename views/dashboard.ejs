@@ -1,0 +1,30 @@
+<%- include('partials/header'); -%>
+<header>
+    <div class="search_place">
+        <input type="text" name="Search" class="search_bar" placeholder="Search... products, brands">
+        
+    </div>
+    <div class="admin_card">
+        <% if (items && items.length > 0) { %>
+            <% items.forEach(item => { %>
+                <div class="admin_content">
+                        <h3>Item: <%= item.item_name %></h3>
+                        <p>Price: <%= item.price %></p>
+                        <img src="<= item.photo %>" alt="item photo">
+                        <p>Description: <%= item.description %></p>
+                        <p>Category: <%= item.category %></p>
+                        <div class="del_div">
+                            <a href="#" class="add-to-cart" onclick="cart(this)">Add to cart</a>
+                        </div>
+                          
+                </div>
+            <% })} %>
+        </div>
+</header>
+
+<script>
+    function cart(element) {
+  console.log("Clicked");
+  element.textContent = "Added!!";
+}
+</script>

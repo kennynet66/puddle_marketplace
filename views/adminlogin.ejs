@@ -1,0 +1,52 @@
+<%- include('partials/header'); -%>
+
+<header>
+    <div class="content">
+        <h1>Admin Login</h1>
+        <form>
+            <div class="input_field">
+                <label for="email">Email: </label><br>
+                <input type="text" name="email" required>
+            </div>
+            <div class="input_field">
+                <label for="password">Password: </label><br>
+                <input type="password" name="password" required>
+            </div>
+            <div class="error div"></div>
+            <button>Log in</button>
+        </form>
+    </div>
+</header>
+
+<script>
+    const form = document.querySelector('form');
+    const errorDiv = document.querySelector('.error.div');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        //reset errors
+        errorDiv.textContent='';
+
+        const email = form.email.value;
+        const password = form.password.value;
+
+        try {
+            const res = await fetch('/admin/login',{
+                method: 'POST',
+                body: JSON.stringify({ email, password }),
+                headers: { 'content-Type' : 'application/json' }
+            });
+            const data = await res.json();
+            console.log(data);
+            if (data.errors) {
+                errorDiv.innerHTML = `${data.errors.email}<br> ${data.errors.password}<br> ${data.errors.full_name}`;
+            }
+            if (data.admin) {
+                location.assign('/admin');
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    })
+</script>

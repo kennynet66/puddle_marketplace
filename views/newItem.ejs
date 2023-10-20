@@ -1,0 +1,38 @@
+<%- include('partials/adminheader') -%>
+
+<header>
+	<title> puddle | New item</title>
+	<div class="content">
+		<h1>Create New item</h1>
+		<form>
+			<div class="input_field">
+				<label for="item_name">Item name: </label><br>
+				<input type="text" name="item_name">
+			</div>
+			<div class="input_field">
+				<label for="price">Price: </label><br>
+				<input type="number" name="price">
+			</div>
+			<div class="input_field">
+				<label for="description">Description: </label><br>
+				<input type="text" name="description">
+			</div>
+			<div class="input_field">
+				<label for="photo">item photo: </label><br>
+				<input type="file" name="photo" required>
+			</div>
+			<div class="input_field">
+				<label for="category">Category: </label><br>
+				<select name="category" default="none" required>
+					<option value="clothes">Clothes</option>
+					<option value="food">Food</option>
+					<option value="shoes">Shoes</option>
+					<option value="phones">Phones</option>
+				</select>
+			</div>
+			<div class="error div"></div>
+			<button>Create</button>
+			<a class="tag" href="/admin">Back</a>
+		</form>
+		<script src="../public/item.js"></script>
+</header>

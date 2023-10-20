@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../public/style.css">
+    <!-- <title>| puddle |</title> -->
+</head>
+<body>
+    <nav> 
+        <a href="/admin">
+            <h1>| Puddle |</h1>
+        </a>
+
+    <div class="actions">
+        <% if (admin) {%>
+            <ul>
+                <a href="/new/item"><li> new item</li></a>
+                <a href="/create"><li> new admin</li></a>
+                <a class="logout" href="/logout"><li class="tag">log out </li></a>
+            </ul>
+        <% } %>
+    </div>
+</nav>
+</body>
+</html>

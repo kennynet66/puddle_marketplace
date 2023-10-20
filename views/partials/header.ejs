@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../public/style.css">
+    <title>| puddle |</title>
+</head>
+<body>
+    <nav> 
+        <a href="/">
+            <h1>| Puddle |</h1>
+        </a>
+
+    <div class="actions">
+        <% if (user) {%>
+            <ul>
+                <a href="#"><li>Contact us</li></a><
+                <a href="profile"><li>Profile</li></a>
+                <a class="logout" href="/logout"><li class="tag">log out </li></a>
+            </ul>
+        <% } else {%>
+            <ul>
+                <a href="/signup"><li>Sign up</li></a>
+                <a href="/login"><li>Log in</li></a>
+            </ul>
+        <% } %>
+    </div>
+</nav>
+</body>
+</html>
