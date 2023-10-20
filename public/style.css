@@ -234,3 +234,31 @@ a.edit {
     margin: 10px;
     color: white;
 }
+
+.edit_file {
+    padding: 20px;
+    width: 50%;
+}
+.edit_fil {
+    padding: 20px;
+    width: 70%;
+}
+
+.edit_file input {
+    border: 2px solid #000;
+    width: 100%;
+    margin: 3%;
+}
+
+.sub {
+    background-color: greenyellow;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    border: none;
+    width: 30%;
+}
+
+.sub:hover {
+    background-color: yellowgreen;
+}

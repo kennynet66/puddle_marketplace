@@ -1,0 +1,49 @@
+<%- include('partials/adminheader') -%>
+<form class="edit_fil">
+    <div class="edit_file">
+        <label for="item_id" >Enter item id: </label><br>
+        <input type="text" name="item_id" required><br><hr>
+        <h2>Edit data</h2><hr>
+        <label for="item_name" >Enter new item name: </label><br>
+        <input type="text"name="item_name"><br>
+        <label for="price" >Enter new price: </label><br>
+        <input type="number" value="1" name="price"><br>
+        <label for="description" >Enter new description:  </label><br>
+        <input type="text" name="description"><br>
+        <label for="photo" >Enter new photo </label><br>
+        <input type="file" name="photo"><br>
+        <button class="sub">Save changes</button>
+    </div>
+</form>
+
+<script>
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const _id = form.item_id.value;
+        const item_name = form.item_name.value;
+        const price = form.price.value;
+        const description = form.description.value;
+        const photo = form.photo.value;
+
+        try {
+        const res = await fetch('/item/update',{
+            method: 'PUT',
+            body: JSON.stringify({ _id, item_name, price, description, photo }),
+            headers: { 'Content-Type' : 'application/json' }
+        });
+        const data = await res.json();
+        console.log(data);
+        if (data.errors) {
+            console.log(data.errors);
+        }
+        if (data.updatedItem) {
+            location.reload();
+        }
+    } catch (err) {
+        console.log(err);
+    }
+    })
+</script>

@@ -98,8 +98,14 @@ module.exports.item_put = async (req,res) => {
 
     try {
         const item = await Item.findByIdAndUpdate(_id, req.body);
-        const updatedItem = await Item.findById(_id);
-        res.status(200).json({ updatedItem });
+        if (item) {
+            console.log("i found the item");
+            const updatedItem = await Item.findById(_id);
+            res.status(200).json({ updatedItem });
+        } else {
+            console.log("I could not find the item");
+            res.status(400).json({ message: "could not update"});
+        }
     }
     catch(err){
         const errors = handleErrors(err);
@@ -121,4 +127,8 @@ module.exports.item_delete = async (req,res) => {
     catch (err) {
         console.log(err);
     }
+}
+
+module.exports.item_gets = async (req, res, next) => {
+    res.render('edit');
 }

@@ -9,6 +9,7 @@
             <h3>Fullname: <%= admin.full_name %></h3>
             <h3>email: <%= admin.email %></h3>
         </div><hr>
+        
     <% } %>
     <div class="admin_card">
         <% if (items && items.length > 0) { %>
@@ -21,7 +22,6 @@
               <p>Category: <%= item.category %></p>
               <div class="del_div">
                 <a href="#" class="delete" data-item_id="<%= item._id %>">delete</a>
-                <a href="#" class="edit" data-item_id="<%= item._id %>">edit</a>
               </div>
             </div>
           <% })} %>

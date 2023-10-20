@@ -10,7 +10,8 @@ router.get('/logout', authController.logout);
 router.post('/admin/create', adminController.create_post);
 router.get('/new/item', checkAdmin, requireAdmin, adminController.item_get);
 router.post('/new/item', adminController.item_post);
-router.put('/item/update', /*checkAdmin, requireAdmin,*/ adminController.item_put);
-router.put('/item/delete', /*checkAdmin, requireAdmin,*/ adminController.item_delete);
+router.get('/item', checkAdmin, requireAdmin, adminController.item_gets)
+router.put('/item/update', checkAdmin, requireAdmin, adminController.item_put);
+router.put('/item/delete', checkAdmin, addItems, requireAdmin, adminController.item_delete);
 
 module.exports = router;
