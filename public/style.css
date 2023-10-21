@@ -169,7 +169,7 @@ li.tag:hover {
 .search_bar {
     border: 2px solid #000;
     padding-left: 30px;
-    width: 50%;
+    width: 95%;
 }
 
 
@@ -203,11 +203,12 @@ li.tag:hover {
 }
 
 .admin_content {
+    margin-bottom: 100px;
     background-color: #f2f2f28c;
     width: 45%;
     border-radius: 10px;
     padding: 15px;
-    margin: 5px;
+    margin: 0px;
 }
 
 .admin_card {
@@ -217,6 +218,17 @@ li.tag:hover {
     margin: 20px;
 }
 
+.admin_content img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.del_div a {
+    background-color: greenyellow;
+    border-radius: 10px;
+    padding: 10px;
+}
 .del_div {
     padding: 15px;
 }
@@ -261,4 +273,135 @@ a.edit {
 
 .sub:hover {
     background-color: yellowgreen;
+}
+@media (max-width: 319px) {
+    .cont h1 {
+        font-size: 23px;
+        width: 98%;
+    }
+    .cont p {
+        font-size: 20px;
+        width: 98%;
+    }
+    .wlcm_btn {
+        width: 100%;
+    }
+}
+@media (min-width: 320px) and (max-width: 480px)
+{
+    .cont h1{
+        width: 100%;
+        font-size: 28px;
+    }
+    .cont p {
+        width: 100%;
+        font-size: 20px;
+        text-align: center;
+    }
+    .wlcm_btn {
+        width: 100%;
+    }
+    .content {
+        width: 95%;
+        margin-left: 2%;
+    }
+    .content input {
+        width: 100%;
+    }
+    .content button {
+        width: 60%;
+    }
+    .admin_card {
+        display: block;
+        width: 100%;
+        margin: 0px;
+    }
+    .admin_content {
+        background-color: transparent;
+        width: 90%;
+        text-align: center;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px)
+{
+    .cont h1{
+        width: 70%;
+    }
+    .cont p{
+        width: 90%;
+        text-align: center;
+    }
+    .wlcm_btn {
+        width: 70%;
+    }
+    .content {
+        width: 70%;
+        margin-left: 15%;
+    }
+    .content input{
+        width: 90%;
+    }
+    .content button {
+        width: 60%;
+    }
+    .admin_card {
+        width: 98%;
+        margin: 0;
+    }
+    .admin_content {
+        width: 45%;
+        margin-right: 0;
+        text-align: center;
+        font-size: 70%;
+    }
+}
+@media (min-width: 769px) and (max-width: 1024px)
+{
+    .cont h1{
+        width: 60%;
+    }
+    .cont p{
+        width: 60%;
+        text-align: center;
+    }
+    .content {
+        width: 50%;
+        margin-left: 25%;
+    }
+    .content input {
+        width: 90%;
+    }
+    .content button {
+        width: 60%;
+    }
+    .admin_content {
+        width: 45%;
+        margin-bottom: 5%;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px)
+{
+    .content {
+        width: 50%;
+        margin-left: 25%;
+    }
+    .content button {
+        width: 60%;
+    }
+    .admin_content {
+        margin-bottom: 5%;
+    }
+}
+
+@media (min-width: 1201px)
+{
+    .admin_content{
+        margin: 1%;
+        width: 30%;
+    }
+    .search_bar {
+        width: 60%;
+    }
 }

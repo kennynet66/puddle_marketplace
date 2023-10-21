@@ -80,18 +80,28 @@ module.exports.create_post = async (req,res) => {
 module.exports.item_get = (req,res) => {
     res.render('newItem');
 }
-module.exports.item_post = async (req,res) => {
-    const { item_name, price, photo, description, category } = req.body
+
+module.exports.item_post = async (req, res) => {
+    let newItem = {
+        item_name: req.body.item_name,
+        price: req.body.price,
+        description: req.body.description,
+        category: req.body.category
+    };
+
+    if (req.file) {
+        newItem.photo = req.file.path;
+    }
 
     try {
-        const item = await Item.create({ item_name, price, photo, description, category })
+        const item = await Item.create(newItem);
         res.status(200).json({ item });
-    }
-    catch(err) {
+    } catch (err) {
         const errors = handleErrors(err);
         res.status(400).json({ errors });
     }
-}
+};
+
 
 module.exports.item_put = async (req,res) => {
     const { _id } = req.body

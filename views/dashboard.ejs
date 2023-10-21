@@ -7,16 +7,15 @@
     <div class="admin_card">
         <% if (items && items.length > 0) { %>
             <% items.forEach(item => { %>
-                <div class="admin_content">
-                        <h3>Item: <%= item.item_name %></h3>
-                        <p>Price: <%= item.price %></p>
-                        <img src="<= item.photo %>" alt="item photo">
-                        <p>Description: <%= item.description %></p>
-                        <p>Category: <%= item.category %></p>
+                <div class="admin_content"><hr>
+                        <h1><%= item.item_name %></h1>
+                        <img src="../<%= item.photo %>" alt="item photo">
+                        <h3><strong>Description:</strong><br> <%= item.description %></h3><br>
+                        <h3><strong>Category</strong><br> <%= item.category %></h3><br>
+                        <h2>Price: <%= item.price %> ksh</h2>
                         <div class="del_div">
                             <a href="#" class="add-to-cart" onclick="cart(this)">Add to cart</a>
-                        </div>
-                          
+                        </div> 
                 </div>
             <% })} %>
         </div>
