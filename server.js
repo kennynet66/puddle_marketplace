@@ -30,8 +30,8 @@ mongoose.connect('mongodb+srv://kennynet66:kennynet66@cluster0.dcfto7l.mongodb.n
 .then(()=> {
     console.log("Connected to MongoDB");
     //Start server
-    app.listen(3000, () => {
-        console.log("server is listening on port 3000");
+    app.listen(4000, () => {
+        console.log("server is listening on port 4000");
     })
 }) .catch ((error) => {
     console.log(error);

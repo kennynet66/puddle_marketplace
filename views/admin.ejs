@@ -2,34 +2,44 @@
 
 <header>
     <title>puddle | admin</title>
-    <% if (admin) {%>
-        <div class="admin_details">
-            <h1>Admin details</h1>
-            <hr>
-            <h3>Fullname: <%= admin.full_name %></h3>
-            <h3>email: <%= admin.email %></h3>
-        </div><hr>
-        
-    <% } %>
-    <div class="admin_card">
+    <% var itemno = 0 %>
+
+    <div class="container-xxl">
+      <div class="row">
         <% if (items && items.length > 0) { %>
           <% items.forEach(item => { %>
-            <div class="admin_content">
-              <h3>Item Id: <%= item._id %></h3>
-              <h3>Item: <%= item.item_name %></h3>
-              <p>Price: <%= item.price %></p>
-              <p>Description: <%= item.description %></p>
-              <p>Category: <%= item.category %></p>
-              <div class="del_div">
-                <a href="#" class="delete" data-item_id="<%= item._id %>">delete</a>
+              <% itemno+=1 %>
+              <div class="card m-2" style="width: 18rem;">
+                <p class="card-text">ID: <%= item._id%></p>
+                <img src="<%= item.photo %>" class="card-img-top" alt="<%= item.item_name %>" height="100%" style="object-fit: cover;">
+                <div class="card-body">
+                  <p class="card-text"><%= item.description%></p>
+                </div>
+                <a href="#" class="delete btn btn-danger btn-sm" data-item_id="<%= item._id %>">delete</a>
               </div>
-            </div>
-          <% })} %>
+        <% })} %>
+      </div>
+    </div>
+
+    <div class="container-lg">
+      <div class="row mt-2">
+        <div class="card border-success mb-3 col-3" style="width: 19rem;">
+          <div class="card-header">Admin Details</div>
+          <div class="card-body text-success">
+            <h6 class="card-title">Fullname: <%= admin.full_name %> </h6>
+            <h6>email: <%= admin.email %></h6>
+          </div>
         </div>
-      </header>
-      
-      
+
+        <div class="card border-success mb-3 col-3" style="width: 19rem;">
+          <div class="card-header">Product statistics</div>
+          <div class="card-body text-success">
+            <h5 class="card-title">Number of products: <%= itemno %> </h5>
+          </div>
+        </div>
+      </div>
 </header>
+
 <script>
     const deleteButtons = document.querySelectorAll('.delete');
   

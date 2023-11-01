@@ -12,6 +12,7 @@ body {
     color: #fff;
     background-color: rgba(57, 14, 156, 0.486);
 }
+/*
 nav {
     background-color: rgba(57, 14, 156, 0.486);
     padding: 15px;
@@ -35,15 +36,12 @@ nav li{
 nav li:hover {
     background-color: rgba(151, 223, 43, 0.836);
     color: black; 
-}
+} */
 
 a {
     text-decoration: none;
     color: #000;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-a h1 {
-    color: #fff;
 }
 .content {
     background-color: #f2f2f2;
@@ -90,7 +88,7 @@ label {
     font-size: 17px;
 }
 
-button {
+/* button {
     border: none;
     padding: 15px;
     border-radius: 10px;
@@ -101,7 +99,7 @@ button {
 
 button:hover {
     background-color: rgba(151, 223, 43, 0.836);   
-}
+} */
 
 img {
     width: 10%;
@@ -224,21 +222,7 @@ li.tag:hover {
     margin-top: 5%;
     margin-bottom: 5%;
 }
-.del_div a {
-    background-color: greenyellow;
-    border-radius: 10px;
-    padding: 10px;
-}
-.del_div {
-    padding: 15px;
-}
-a.delete {
-    background-color: salmon;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 10px;
-    color: white;
-}
+
 a.edit {
     background-color: greenyellow;
     padding: 10px;
@@ -273,6 +257,16 @@ a.edit {
 
 .sub:hover {
     background-color: yellowgreen;
+}
+
+.stats {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    margin: 5%;
+    padding: 10px;
+    color: #000;
+    text-align: center;
+    width: 40%;
 }
 @media (max-width: 319px) {
     .cont h1 {
@@ -405,3 +399,16 @@ a.edit {
         width: 60%;
     }
 }
+
+/* 
+<!-- </div>
+<div class="admin_content">
+  <h3>Item Id: <%= item._id %></h3>
+  <h3>Item: <%= item.item_name %></h3>
+  <p>Price: <%= item.price %></p>
+  <p>Description: <%= item.description %></p>
+  <p>Category: <%= item.category %></p>
+  <div class="del_div">
+    <a href="#" class="delete" data-item_id="<%= item._id %>">delete</a>
+  </div>
+</div> --> */
