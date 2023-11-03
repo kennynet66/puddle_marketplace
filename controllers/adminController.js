@@ -11,7 +11,17 @@ const handleErrors = (err) => {
         return errors;
     }
 
+    if (err.message.includes('Email does not exist')) {
+        errors.password = "Not admin email";
+        return errors;
+    }
+
     if (err.message.includes('incorrect password')) {
+        errors.password = "Incorrect password";
+        return errors;
+    }
+
+    if (err.message.includes('invalid password')) {
         errors.password = "Incorrect password";
         return errors;
     }
