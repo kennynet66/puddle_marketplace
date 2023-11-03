@@ -1,4 +1,5 @@
 <%- include('partials/adminheader') -%>
+<<<<<<< HEAD
 <form class="edit_fil">
     <div class="edit_file">
         <label for="item_id" >Enter item id: </label><br>
@@ -16,6 +17,42 @@
     </div>
 </form>
 
+=======
+<header>
+    <title>Puddle | Edit item</title>
+    <div class="container-sm mt-2">
+    <div class="row justify-content-center">
+        <form class="form col col-md-6">
+            <div class="mb-3">
+                <label for="item_id" class="form-label text-white">Enter Item id: </label>
+                <input type="text" class="form-control w-100" id="item_id" required>
+            </div>
+            <h2 class="text-white">Edit data</h2>
+            <div class="mb-3">
+                <label for="item_name" class="form-label text-white">Enter Item name: </label>
+                <input type="text" class="form-control w-100" id="item_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label text-white">Enter new price: </label>
+                <input type="text" class="form-control w-100" id="price" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label text-white">Enter new description: </label>
+                <input type="text" class="form-control w-100" id="description" required>
+            </div>
+            <div class="mb-3">
+                <label for="photo" class="form-label text-white">Enter new photo: </label>
+                <input type="file" class="form-control w-100" id="photo" required>
+            </div>
+            <div class="d-flex">
+                <button class="btn btn-primary m-2">Save changes</button>
+                <a class="btn btn-danger m-2" href="/admin">Back</a>
+            </div>
+        </form>
+    </div>
+    </div>
+</header>
+>>>>>>> 6f5c575... Perfected admin end
 <script>
     const form = document.querySelector('form');
 

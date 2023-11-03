@@ -12,6 +12,7 @@ body {
     color: #fff;
     background-color: rgba(57, 14, 156, 0.486);
 }
+<<<<<<< HEAD
 nav {
     background-color: rgba(57, 14, 156, 0.486);
     padding: 15px;
@@ -405,3 +406,5 @@ a.edit {
         width: 60%;
     }
 }
+=======
+>>>>>>> 6f5c575... Perfected admin end

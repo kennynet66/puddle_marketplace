@@ -1,9 +1,8 @@
-const form = document.querySelector('form');
+const form = document.querySelector('.form');
 const errorDiv = document.querySelector('.error.div');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     // Reset errors
     errorDiv.textContent = '';
 
@@ -19,6 +18,8 @@ form.addEventListener('submit', async (e) => {
     formData.append('price', price);
     formData.append('description', description);
     formData.append('category', category);
+
+    console.log(formData)
 
     try {
         const res = await fetch('/new/item', {
