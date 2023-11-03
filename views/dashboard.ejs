@@ -29,8 +29,8 @@
                     <p class="card-text">Price: <%= item.price%></p>
                     <p class="card-text">Category: <%= item.category%></p>
                   </div>
-                  <a href="#" onclick="cart(this)" class="btn btn-success btn-sm m-1" data-item_id="<%= item._id %>">Add to cart</a>
-                  <a href="#" class="btn btn-secondary btn-sm m-1" data-item_id="<%= item._id %>">Contact seller</a>
+                  <a class="cart btn btn-success btn-sm m-1" data-item_id="<%= item._id %>">Add to cart</a>
+                  <a class="btn btn-secondary btn-sm m-1" data-item_id="<%= item._id %>">Contact seller</a>
                 </div>
           <% })} %>
         </div>
@@ -39,8 +39,14 @@
 </header>
 
 <script>
-    function cart(element) {
-  console.log("Clicked");
-  element.textContent = "Added!!";
-}
+const addCartButtons = document.querySelectorAll('.cart');
+let addCart = 0
+
+addCartButtons.forEach(button => {
+  button.addEventListener('click', (e) => {
+    addCart += 1;
+    console.log(addCart)
+  });
+});
+
 </script>

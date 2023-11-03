@@ -1,9 +1,9 @@
 <%- include('partials/header'); -%>
 
 <header>
-    <div class="container-lg">
+    <div class="container-sm mt-2">
         <div class="row justify-content-center">
-            <form class="p-2 rounded w-50 w-sm-25 border mt-5 p-5 mx-auto">
+            <form class="form col col-md-6">
                     <h2 class="text-white ">Sign in</h2>
                     <div class="mb-3">
                         <label for="full_name" class="form-label text-white">Enter full name: </label>
@@ -18,7 +18,10 @@
                         <input type="password" class="form-control w-100" id="password" required>
                     </div>
                     <div class="error div text-danger"></div>
-                    <button class="btn btn-primary">Log in</button>
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-primary m-2">Sign in</button>
+                        <a href="/login" class="text-white m-2">Already have an account?</a>
+                    </div>
                 </form>
             </div>
     </div>

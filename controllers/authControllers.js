@@ -61,7 +61,9 @@ module.exports.login_post = async (req,res) => {
             res.cookie('jwt', token, { maxAge: maxAge * 1000, httpOnly:true });
             res.status(200).json({ user: user._id });
         } else if(user.state === "admin"){
+            const adtoken = createToken(user._id);
             const token = createAdminToken(user._id);
+            res.cookie('jwt', adtoken, { httpOnly: true, maxAge: maxAge * 1000});
             res.cookie('admin', token, { httpOnly: true, maxAge: maxAge * 1000});
             res.status(200).json({ user: user._id });
         }
