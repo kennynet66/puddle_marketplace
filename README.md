@@ -15,7 +15,6 @@ Welcome to **Puddle**, your go-to destination for a seamless ecommerce shopping 
 
 Puddle is your one-stop shop for all your online shopping needs. With a user-friendly interface and a wide range of products, we aim to provide you with a hassle-free shopping experience, right from the comfort of your home. 💻📦
 
-![Puddle Logo](https://www.puddle.com/logo.png)
 
 ## Features
 
@@ -61,4 +60,4 @@ We welcome contributions to Puddle! If you have suggestions, bug reports, or wan
 
 Puddle is released under the [MIT License](LICENSE), so feel free to use, modify, and distribute the code as you see fit.
 
-Happy shopping with Puddle! If you have any questions, feedback, or concerns, please contact our support team at [support@puddle.com](mailto:support@puddle.com). 📧🛍️
+Happy shopping with Puddle! If you have any questions, feedback, or concerns, please contact our support team at [support@puddle.com](mailto:kennynet66@gmail.com). 📧🛍️
