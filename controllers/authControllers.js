@@ -83,7 +83,3 @@ module.exports.logout = (req,res) => {
     res.cookie('admin', '', {httpOnly:true, maxAge: 1 });
     res.redirect('/');
 }
-
-module.exports.profile_get = (req,res) => {
-    res.render('profile');
-}
