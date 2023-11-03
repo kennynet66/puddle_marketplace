@@ -15,7 +15,6 @@ Welcome to **Puddle**, your go-to destination for a seamless ecommerce shopping 
 
 Puddle is your one-stop shop for all your online shopping needs. With a user-friendly interface and a wide range of products, we aim to provide you with a hassle-free shopping experience, right from the comfort of your home. 💻📦
 
-
 ## Features
 
 Here are some of the exciting features that Puddle offers:
