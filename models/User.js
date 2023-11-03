@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const { isEmail } = require('validator')
 const bcrypt = require('bcrypt');
-const Admin = require('./admin');
+const Admin = require('./admin')
 
 const userSchema = new mongoose.Schema({
     full_name: {
@@ -24,20 +24,38 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false,
         default: 'https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png'
+    },
+    state: {
+        type: String,
+        required: false,
+        default: 'user'
     }
 });
 
-userSchema.statics.login = async function (email, password){
+userSchema.statics.login = async function (email, password) {
     const user = await this.findOne({ email });
-    if (user){
-        const auth = await bcrypt.compare(password, user.password);
-        if(auth) {
-            return user;
-        }
-        throw Error('invalid password');
+    const admin = await Admin.findOne({ email })
+  
+    if (user) {
+      const auth = await bcrypt.compare(password, user.password);
+      if (auth) {
+        return user; // Return the user if the password matches
+      } else {
+        throw new Error('Invalid password');
+      }
     }
-    throw Error('Email does not exist');
-}
+  
+      if (admin) {
+        const adminAuth = await bcrypt.compare(password, admin.password);
+        if (adminAuth) {
+          return admin; // Return the admin if the password matches
+        } else {
+          throw new Error('Invalid password');
+        }
+      }
+      throw new Error('Email does not exist');
+    }
+  
 
 userSchema.pre('save', async function(next) {
     const salt = await bcrypt.genSalt();

@@ -66,11 +66,13 @@
 <div class="container-lg">
   <div class="row mt-2">
     <div class="card border-success m-3 col-3" style="width: 19rem;">
+      <% if (admin) { %>
       <div class="card-header">Admin Details</div>
         <div class="card-body text-success">
           <h6 class="card-title">Fullname: <%= admin.full_name %> </h6>
           <h6>email: <%= admin.email %></h6>
         </div>
+        <% } %>
     </div>
     <!-- Display product statistics -->
     <div class="card border-success m-3 col-3" style="width: 19rem;">

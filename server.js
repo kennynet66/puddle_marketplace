@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.set('view engine','ejs');
 
 //routes
-app.get('*', checkUser);
+app.get('*', checkUser, checkAdmin);
 app.get('/', (req,res) => {res.render('landing')})
 app.get('/dashboard', requireAuth, addItems, (req,res) => {res.render('dashboard')})
 app.get('/admin', checkAdmin, requireAdmin, addItems, (req,res) => { res.render('admin')});

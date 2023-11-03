@@ -19,6 +19,16 @@ const adminSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Please input a password']
+    },
+    profile_photo: {
+        type: String,
+        required: false,
+        default: 'https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png'
+    },
+    state: {
+        type: String,
+        required: false,
+        default: 'admin'
     }
 })
 

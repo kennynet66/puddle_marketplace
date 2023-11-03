@@ -5,7 +5,7 @@ const Item = require('../models/item');
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
-  const adminToken = req.cookies.jwt;
+  const adminToken = req.cookies.admin;
 
   // check json web token exists & is verified
   if (token) {
@@ -18,7 +18,18 @@ const requireAuth = (req, res, next) => {
         next();
       }
     });
-  } else {
+  } else if(adminToken) {
+    jwt.verify(adminToken, 'ADMINSECRET', (err, decodedToken) => {
+      if (err) {
+        console.log(err.message);
+        res.redirect('/login');
+      } else {
+        console.log(decodedToken);
+        next();
+      }
+    })
+  }
+  else {
     res.redirect('/login');
   }
   
