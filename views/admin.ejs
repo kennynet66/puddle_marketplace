@@ -2,14 +2,64 @@
 
 <header>
     <title>puddle | admin</title>
+<!-- Search area -->
+<form class="d-flex d-lg-none m-2">
+  <input class="form-control me-2 w-75" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+  <!-- Calculate the number of items -->
     <% var itemno = 0 %>
+    <% var phones = 0 %>
+    <% var shoes = 0 %>
+
+<% if (items && items.length > 0) { %>
+  <% items.forEach(item => { %>
+    <% if (item.category === "phones") { %>
+      <% phones += 1 %>
+    <% } %>
+  <% })} %>
+
+  <% if (items && items.length > 0) { %>
+    <% items.forEach(item => { %>
+      <% if (item.category === "shoes") { %>
+        <% shoes += 1 %>
+      <% } %>
+    <% })} %>
+
+  
+
+    <% if (items && items.length > 0) { %>
+      <% items.forEach(item => { %>
+          <% itemno+=1 %>
+    <% })} %>
+
+<!-- Display the admin details -->
+<div class="container-lg">
+  <div class="row mt-2">
+    <div class="card border-success m-3 col-3" style="width: 19rem;">
+      <div class="card-header">Admin Details</div>
+        <div class="card-body text-success">
+          <h6 class="card-title">Fullname: <%= admin.full_name %> </h6>
+          <h6>email: <%= admin.email %></h6>
+        </div>
+    </div>
+    <!-- Display product statistics -->
+    <div class="card border-success m-3 col-3" style="width: 19rem;">
+      <div class="card-header">Product statistics</div>
+        <div class="card-body text-success">
+          <h6 class="card-title">Total products: <%= itemno %> </h6>
+          <h6 class="card-title">Number of phones: <%= phones %> </h6>
+          <h6 class="card-title">Number of shoes: <%= shoes %> </h6>
+      </div>
+    </div>
+  </div>
+</div>
 
     <div class="container-xxl">
       <div class="row">
         <% if (items && items.length > 0) { %>
           <% items.forEach(item => { %>
-              <% itemno+=1 %>
-              <div class="card m-2" style="width: 18rem;">
+              <div class="card m-2 p-2" style="width: 18rem;">
                 <p class="card-text">ID: <%= item._id%></p>
                 <img src="<%= item.photo %>" class="card-img-top" alt="<%= item.item_name %>" height="100%" style="object-fit: cover;">
                 <div class="card-body">
@@ -21,23 +71,6 @@
       </div>
     </div>
 
-    <div class="container-lg">
-      <div class="row mt-2">
-        <div class="card border-success mb-3 col-3" style="width: 19rem;">
-          <div class="card-header">Admin Details</div>
-          <div class="card-body text-success">
-            <h6 class="card-title">Fullname: <%= admin.full_name %> </h6>
-            <h6>email: <%= admin.email %></h6>
-          </div>
-        </div>
-
-        <div class="card border-success mb-3 col-3" style="width: 19rem;">
-          <div class="card-header">Product statistics</div>
-          <div class="card-body text-success">
-            <h5 class="card-title">Number of products: <%= itemno %> </h5>
-          </div>
-        </div>
-      </div>
 </header>
 
 <script>

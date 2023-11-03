@@ -1,20 +1,22 @@
 <%- include('partials/header'); -%>
 
 <header>
-    <div class="content">
-        <h1>Login</h1>
-        <form>
-            <div class="input_field">
-                <label for="email">Email: </label><br>
-                <input type="text" name="email" required>
+    <div class="container-lg">
+        <div class="row justify-content-center">
+            <form class="p-2 rounded w-50 w-sm-25 border mt-5 p-5 mx-auto">
+                    <h2 class="text-white ">Login</h2>
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-white">Enter email: </label>
+                        <input type="email" class="form-control w-100" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label text-white">Enter password: </label>
+                        <input type="password" class="form-control w-100" id="password" required>
+                    </div>
+                    <div class="error div text-danger"></div>
+                    <button class="btn btn-primary">Log in</button>
+                </form>
             </div>
-            <div class="input_field">
-                <label for="password">Password: </label><br>
-                <input type="password" name="password" required>
-            </div>
-            <div class="error div"></div>
-            <button>Log in</button>
-        </form>
     </div>
 </header>
 

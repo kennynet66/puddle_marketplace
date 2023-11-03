@@ -2,37 +2,49 @@
 
 <header>
 	<title> puddle | New item</title>
-	<div class="content">
-		<h1>Create New item</h1>
-		<form>
-			<div class="input_field">
-				<label for="item_name">Item name: </label><br>
-				<input type="text" name="item_name">
+	<div class="container-sm mt-2">
+	<div class="row justify-content-center">
+		<form class="form col col-md-6">
+			<h1 class="text-white">Create New item</h1>
+			<div class="mb-3">
+				<label for="item_name" class="form-label text-white">Item name: </label><br>
+				<input type="text" class="form-control" name="item_name">
 			</div>
-			<div class="input_field">
-				<label for="price">Price: </label><br>
-				<input type="number" name="price">
+			<div class="mb-3">
+				<label for="price" class="form-label text-white">Price: </label><br>
+				<input type="number" class="form-control" name="price">
 			</div>
-			<div class="input_field">
-				<label for="description">Description: </label><br>
-				<input type="text" name="description">
+			<div class="mb-3">
+				<label for="description" class="form-label text-white">Description: </label><br>
+				<input type="text" class="form-control" name="description">
 			</div>
-			<div class="input_field">
-				<label for="photo">item photo: </label><br>
-				<input type="file" name="photo" required>
+			<div class="mb-3">
+				<label for="photo" class="form-label text-white">item photo: </label><br>
+				<input type="file" class="form-control" name="photo" >
 			</div>
-			<div class="input_field">
-				<label for="category">Category: </label><br>
-				<select name="category" default="none" required>
+			<div class="mb-3">
+				<label for="category" class="form-label text-white">Category: </label><br>
+				<select name="category" class="form-control" default="none" >
 					<option value="clothes">Clothes</option>
-					<option value="food">Food</option>
+					<option value="food">Food and groceries</option>
 					<option value="shoes">Shoes</option>
+					<option value="Electronics">Electronics</option>
+					<option value="Home and living">Home and living</option>
+					<option vaylue="Health and beauty">Health and beauty</option>
+					<option value="Books and media">Books and media</option>
+					<option value="Computers and accessories">Computers and accessories</option>
+					<option value="Toys and games">Toys and games</option>
+					<option value="Sportsand outdoors">Sports and outdoors</option>
 					<option value="phones">Phones</option>
+					<option value="Furniture">Furniture</option>
+					<option value="Office and school supplies">Office and school supplies</option>
 				</select>
 			</div>
-			<div class="error div"></div>
-			<button>Create</button>
-			<a class="tag" href="/admin">Back</a>
+			<div class="error div text-danger"></div>
+			<button class="btn btn-success">Create</button>
+			<a class="btn btn-danger" href="/admin">Back</a>
 		</form>
-		<script src="../public/item.js"></script>
+	</div>
+	</div>
 </header>
+<script src="../public/item.js"></script>
