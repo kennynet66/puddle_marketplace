@@ -67,7 +67,10 @@
                 <div class="card-body">
                   <p class="card-text"><%= item.description%></p>
                 </div>
-                <a href="#" class="delete btn btn-danger btn-sm" data-item_id="<%= item._id %>">delete</a>
+                <div class="d-flex">
+                  <a href="#" class="delete btn btn-danger m-2 btn-sm" data-item_id="<%= item._id %>">delete</a>
+                  <a href="/item/id=<%= item._id %>" class="edit btn btn-success m-2 btn-sm" data-item_id="<%= item._id %>">Edit</a>
+                </div>
               </div>
         <% })} %>
       </div>
