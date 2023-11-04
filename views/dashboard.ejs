@@ -16,37 +16,40 @@
   </form>
 
   <!-- item Cards -->
-    <div class="container-xxl">
-        <div class="row">
+  <div class="container-fluid d-flex ">
+        <div class="row p-0 d-flex col-9">
           <% if (items && items.length > 0) { %>
 >>>>>>> 6f5c575... Perfected admin end
             <% items.forEach(item => { %>
-                <div class="card m-2 p-2" style="width: 18rem;">
+                <form class="card m-2 p-2" style="width: 18rem;">
                   <p class="card-text"><%= item.item_name %></p>
                   <img src="<%= item.photo %>" title="<%=item.item_name%>" class="card-img-top" alt="<%= item.item_name %>" height="100%" style="object-fit: cover;">
                   <div class="card-body">
                     <p class="card-text"><%= item.description%></p>
-                    <p class="card-text">Price: <%= item.price%></p>
+                    <p class="card-text">Price: <span id="price"><%= item.price %></span></p>
                     <p class="card-text">Category: <%= item.category%></p>
+                    <label for="quantity">Quantity:</label>
+                    <input class="w-25" min="1" max="100" name="quantity" type="number" value="1">
                   </div>
-                  <a class="cart btn btn-success btn-sm m-1" data-item_id="<%= item._id %>">Add to cart</a>
-                  <a class="btn btn-secondary btn-sm m-1" data-item_id="<%= item._id %>">Contact seller</a>
-                </div>
+                  <a class="cart btn btn-success btn-sm m-1" data-price="<%= item.price %>" data-item_id="<%= item._id %>">Add to cart</a>
+                </form>
           <% })} %>
         </div>
-      </div>
+
+        <div class="container-lg">
+          <div class="card m-2  col-1 position-fixed" style="width: 20rem;">
+            <div class="card-body">
+              <h5 class="card-title">Your Cart<span class="cart-badge badge ms-2 text-bg-secondary">0</span></h5><hr>
+              <div>
+                <h3>Items</h3>
+              </div><hr>
+                <div class="card-title d-flex">Total Cost: <pre> </pre><div class="total-cost">ksh 0</div></div><hr>
+                <a class="btn btn-warning rounded-0">Checkout</a>
+            </div>
+          </div>
+        </div>
+  </div>
       
 </header>
 
-<script>
-const addCartButtons = document.querySelectorAll('.cart');
-let addCart = 0
-
-addCartButtons.forEach(button => {
-  button.addEventListener('click', (e) => {
-    addCart += 1;
-    console.log(addCart)
-  });
-});
-
-</script>
+<script src="../public/cartFront.js"></script>
