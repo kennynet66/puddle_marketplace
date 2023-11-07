@@ -24,17 +24,17 @@
     <div class="row justify-content-center">
         <form class="form col col-md-6">
             <div class="mb-3">
-                <label for="item_id" class="form-label text-white">Enter Item id: </label>
-                <input type="text" class="form-control w-100" id="item_id" required>
+                <label for="item_id" class="form-label text-white">Item id: </label>
+                <input type="text" class="item-id form-control w-100" id="item_id" required readonly>
             </div>
             <h2 class="text-white">Edit data</h2>
             <div class="mb-3">
                 <label for="item_name" class="form-label text-white">Enter Item name: </label>
-                <input type="text" class="form-control w-100" id="item_name" required>
+                <input type="text" class="item-name form-control w-100" id="item_name" required>
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label text-white">Enter new price: </label>
-                <input type="text" class="form-control w-100" id="price" required>
+                <input type="number" class="item-price form-control w-100" id="price" required>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label text-white">Enter new description: </label>
@@ -42,7 +42,7 @@
             </div>
             <div class="mb-3">
                 <label for="photo" class="form-label text-white">Enter new photo: </label>
-                <input type="file" class="form-control w-100" id="photo" required>
+                <input type="file" class="form-control w-100" id="photo" name="photo" required>
             </div>
             <div class="d-flex">
                 <button class="btn btn-primary m-2">Save changes</button>
@@ -54,7 +54,7 @@
 </header>
 >>>>>>> 6f5c575... Perfected admin end
 <script>
-    const form = document.querySelector('form');
+    const form = document.querySelector('.form');
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -63,13 +63,21 @@
         const item_name = form.item_name.value;
         const price = form.price.value;
         const description = form.description.value;
-        const photo = form.photo.value;
+        const photoFile = form.photo.files[0];
+
+        const formData = new FormData();
+        formData.append('_id', _id);
+        formData.append('photo', photoFile);
+        formData.append('item_name', item_name);
+        formData.append('price', price);
+        formData.append('description', description);
+
+        console.log(formData)
 
         try {
         const res = await fetch('/item/update',{
             method: 'PUT',
-            body: JSON.stringify({ _id, item_name, price, description, photo }),
-            headers: { 'Content-Type' : 'application/json' }
+            body: formData
         });
         const data = await res.json();
         console.log(data);
@@ -83,4 +91,18 @@
         console.log(err);
     }
     })
+    // Parse the URL to extract query parameters
+const urlParams = new URLSearchParams(window.location.search);
+
+// Get the values from the URL
+const idValue = urlParams.get("id");
+const nameValue = urlParams.get("name");
+const priceValue = urlParams.get("price");
+
+// Set the values as default values in input fields
+document.querySelector(".item-id").value = idValue;
+document.querySelector(".item-name").value = nameValue;
+document.querySelector(".item-price").value = priceValue;
+
+
 </script>

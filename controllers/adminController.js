@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/admin');
 const Item = require('../models/item');
+const url = require('url')
 
 const handleErrors = (err) => {
     console.log(err.message, err.code);
@@ -121,6 +122,7 @@ module.exports.item_put = async (req,res) => {
         if (item) {
             console.log("i found the item");
             const updatedItem = await Item.findById(_id);
+            console.log(updatedItem)
             res.status(200).json({ updatedItem });
         } else {
             console.log("I could not find the item");
@@ -150,5 +152,8 @@ module.exports.item_delete = async (req,res) => {
 }
 
 module.exports.item_gets = async (req, res, next) => {
+    let { query,pathname } = url.parse(req.url,true)
+    console.log(query.id);
+    // res.status(200).json(query.id)
     res.render('edit');
 }
