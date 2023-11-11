@@ -96,3 +96,7 @@ module.exports.logout = (req,res) => {
     res.cookie('admin', '', {httpOnly:true, maxAge: 1 });
     res.redirect('/');
 }
+
+module.exports.contact_get = (req,res) => {
+    res.render('contact');
+}
