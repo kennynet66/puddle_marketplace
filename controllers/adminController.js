@@ -151,9 +151,16 @@ module.exports.item_delete = async (req,res) => {
     }
 }
 
-module.exports.item_gets = async (req, res, next) => {
-    let { query,pathname } = url.parse(req.url,true)
-    console.log(query.id);
-    // res.status(200).json(query.id)
-    res.render('edit');
+module.exports.item_gets = async (req, res) => {
+    let { query } = url.parse(req.url,true)
+    try {
+        const item = await Item.findById(query.id);
+        if (item) {
+            res.render('edit');
+        } else {
+            res.render('404');
+        }
+    } catch (err) {
+        res.render('404');
+    }
 }

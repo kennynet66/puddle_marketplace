@@ -6,7 +6,8 @@ const authRoutes = require('./routes/authRoutes');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const adminRoutes = require('./routes/adminRoutes');
-const multer = require('multer')
+const multer = require('multer');
+const itemRoutes = require('./routes/itemRoutes');
 
 //middleware
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -25,6 +26,7 @@ app.get('/admin', checkAdmin, requireAdmin, addItems, (req,res) => { res.render(
 app.get('/create', checkAdmin, requireAdmin, (req,res) => { res.render('adminCreate')});
 app.use(authRoutes);
 app.use(adminRoutes);
+app.use(itemRoutes);
 
 mongoose.connect('mongodb+srv://kennynet66:kennynet66@cluster0.dcfto7l.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 .then(()=> {

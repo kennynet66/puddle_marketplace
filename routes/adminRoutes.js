@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const adminController = require('../controllers/adminController');
 const authController = require('../controllers/authControllers');
-const { addItems, requireAdmin, checkAdmin } = require('../middleware/authMiddleware');
+const { addItems, requireAdmin, checkAdmin, requireAuth } = require('../middleware/authMiddleware');
 const upload = require('../middleware/upload');
 const router = Router();
 
