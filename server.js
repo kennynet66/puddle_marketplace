@@ -10,6 +10,7 @@ const routes = require('./routes/routes');
 const adminRoutes = require('./routes/adminRoutes');
 const itemRoutes = require('./routes/itemRoutes');
 const authRoutes = require('./routes/authRoutes');
+const { checkItem } = require('./middleware/itemCheck');
 
 //middleware
 const { requireAuth, checkUser,requireAdmin, checkAdmin,  addItems } = require('./middleware/authMiddleware');
@@ -29,6 +30,7 @@ app.get('/', (req,res) => {res.render('landing')})
 app.get('/dashboard', requireAuth, addItems, (req,res) => {res.render('dashboard')})
 app.get('/admin', checkAdmin, requireAdmin, addItems, (req,res) => { res.render('admin')});
 app.get('/create', checkAdmin, requireAdmin, (req,res) => { res.render('adminCreate')});
+app.get('/view', addItems, checkItem, (req,res) => {res.render('item')});
 app.use(routes);
 app.use(authRoutes);
 app.use(adminRoutes);

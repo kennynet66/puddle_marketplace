@@ -7,11 +7,11 @@ const checkItem = async (req,res, next) => {
     if (token) {
         jwt.verify(token, process.env.ITEMSECRET, async (err, decodedToken) => {
             if (err) {
-                res.locals.item = null;
+                res.locals.viewitem = null;
                 next();
             } else {
                 let item = await Item.findById(decodedToken.id);
-                res.locals.item = item;
+                res.locals.viewitem = item;
                 next();
             }
         });

@@ -29,3 +29,7 @@ body {
 .sub:hover {
     background-color: yellowgreen;
 }
+
+.item-card:hover {
+    box-shadow: 0 0 10px #ffed9d;
+  }

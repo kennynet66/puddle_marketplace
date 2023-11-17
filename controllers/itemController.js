@@ -36,8 +36,3 @@ module.exports.item_get = async (req, res) => {
         res.render('404');
     }
 }
-
-// Render the template view
-module.exports.get_view = (req, res) => {
-    res.render('item');
-}

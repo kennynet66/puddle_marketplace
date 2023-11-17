@@ -1,7 +1,8 @@
 <%- include('partials/header') -%>
-<title>puddle | <%= item.item_name %></title>
+  <title>puddle | <%= viewitem.item_name %>
+  </title>
 
-<!-- 
+  <!-- 
     - This will display a specific item's details.
     - The item details including:
         - Item name.
@@ -12,39 +13,55 @@
     - Add to cart button.
     - Back button which returns the user back to the dashboard.
  -->
-<header>
+  <header>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <img src="<%= item.photo %>" class="m-2 rounded" style="width: 100%; object-fit: cover;">
-            </div>
-            <div class="col-md-6">
-                <h1 class="text-white display-5"><%= item.item_name %></h1>
-                <p class="text-white lead"><%= item.description %></p>
-                <p class="text-white lead">Price: <%= item.price %></p>
-                <p class="text-white lead">Item Category: <%= item.category %></p>
-                <a href="#" class="btn m-2 btn-warning">Add to cart</a>
-                <a href="/dashboard" class="btn m-2 btn-danger">Back</a>
-            </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <img src="<%= viewitem.photo %>" class="m-2 rounded" style="width: 100%; object-fit: cover;">
         </div>
-    </div> <hr class="text-white">
-    <h1 class="lead text-center text-white display-5">Explore more items</h1>
-      <div class="container-xxl d-flex ">
-    <div class="row p-0 d-flex col-lg-9">
-      <% if (items && items.length > 0) { %>
-      <% items.forEach(item => { %>
-      <form class="card m-2 p-2" style="width: 18rem;">
-        <p class="card-text"> <strong> <%= item.item_name %></strong></p>
-        <img src="<%= item.photo %>" title="<%=item.item_name%>" class="card-img-top" alt="<%= item.item_name %>" height="100%" style="object-fit: cover;">
-        <div class="card-body">
-          <p class="card-text"><strong>Price:</strong> <span id="price"><%= item.price %></span></p>
-          <p class="card-text text-success">in stock</p>
-          <a class="cart btn btn-success btn-sm" onclick="get_price(<%= item.price %>), get_name('<%= item.item_name%>', <%= item.price %>)" data-item_id="<%= item._id %>">Add to cart</a>
-          <a href="/item/search?id=<%= item._id %>&name=<%= item.item_name %>" class="btn btn-success btn-sm">View item</a>
+        <div class="col-md-6">
+          <h1 class="text-white display-5">
+            <%= viewitem.item_name %>
+              <% currentItem=viewitem.item_name %>
+          </h1>
+          <p class="text-white lead">
+            <%= viewitem.description %>
+          </p>
+          <p class="text-white lead">Price: <%= viewitem.price %>
+          </p>
+          <p class="text-white lead">Item Category: <%= viewitem.category %>
+          </p>
+          <a href="#" class="btn m-2 btn-warning">Add to cart</a>
+          <a href="/dashboard" class="btn m-2 btn-danger">Back</a>
         </div>
-      </form>
-      <% })} %>
+      </div>
     </div>
-  </div>
-</header>
-<%- include('partials/footer') %>
+    <hr class="text-white">
+    <h1 class="lead text-center text-white display-5">Explore more items</h1>
+    <div class="container-xxl d-flex ">
+      <div class="row p-0 justify-content-start d-flex col">
+        <% if (items && items.length> 0) { %>
+          <% items.forEach(item=> { %>
+            <% if (item.item_name !==currentItem) { %>
+              <div class="card item-card m-2 p-2" style="width: 18rem;">
+                <p class="card-text"> <strong>
+                    <%= item.item_name %>
+                  </strong></p>
+                <img src="<%= item.photo %>" title="<%=item.item_name%>" class="card-img-top border"
+                  alt="<%= item.item_name %>" height="100%" style="object-fit: cover;">
+                <div class="card-body">
+                  <p class="card-text"><strong>Price:</strong> <span id="price">
+                      <%= item.price %>
+                    </span></p>
+                  <p class="card-text text-success">in stock</p>
+                  <a href="/item/search?id=<%= item._id %>&name=<%= item.item_name %>"
+                    class="btn btn-success btn-sm">View
+                    item</a>
+                </div>
+              </div>
+            <% } %>
+        <% })} %>
+      </div>
+    </div>
+  </header>
+  <%- include('partials/footer') %>

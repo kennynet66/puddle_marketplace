@@ -1,12 +1,22 @@
 const mongoose = require('mongoose');
 
 const cartSchema = new mongoose.Schema({
-    product: {
-        type: [String]
+    user: {
+        type: String,
+        required: true
     },
-    buyerDetails: {},
-    cartStatus: {},
-    cartValue: {},
+    products: {
+        type: [String],
+        required: true
+    },
+    buyerDetails: {
+        type: String,
+        required: true
+    },
+    cartStatus: {
+        type: String,
+        required: true
+    },
 })
 
 const Cart = mongoose.model('cart', cartSchema)
