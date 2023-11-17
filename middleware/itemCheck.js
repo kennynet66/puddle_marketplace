@@ -5,7 +5,7 @@ const Item = require('../models/item');
 const checkItem = async (req,res, next) => {
     const token = req.cookies.item;
     if (token) {
-        jwt.verify(token, 'ITEMSECRET', async (err, decodedToken) => {
+        jwt.verify(token, process.env.ITEMSECRET, async (err, decodedToken) => {
             if (err) {
                 res.locals.item = null;
                 next();

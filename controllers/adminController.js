@@ -48,7 +48,7 @@ const handleErrors = (err) => {
 //create an admin token
 const maxAge = 3 * 24 * 60 * 60
 const createToken = (id) => {
-    return jwt.sign({ id }, 'ADMINSECRET', {
+    return jwt.sign({ id }, process.env.ADMINSECRET, {
         expiresIn: maxAge
     })
 }

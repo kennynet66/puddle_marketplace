@@ -9,7 +9,7 @@ const requireAuth = (req, res, next) => {
 
   // check json web token exists & is verified
   if (token) {
-    jwt.verify(token, 'SECRET', (err, decodedToken) => {
+    jwt.verify(token, process.env.SECRET, (err, decodedToken) => {
       if (err) {
         console.log(err.message);
         res.redirect('/login');
@@ -19,7 +19,7 @@ const requireAuth = (req, res, next) => {
       }
     });
   } else if(adminToken) {
-    jwt.verify(adminToken, 'ADMINSECRET', (err, decodedToken) => {
+    jwt.verify(adminToken, process.env.ADMINSECRET, (err, decodedToken) => {
       if (err) {
         console.log(err.message);
         res.redirect('/login');
@@ -40,7 +40,7 @@ const requireAdmin = (req, res, next) => {
 
   // check json web token exists & is verified
   if (adminToken) {
-    jwt.verify(adminToken, 'ADMINSECRET', (err, decodedToken) => {
+    jwt.verify(adminToken, process.env.ADMINSECRET, (err, decodedToken) => {
       if (err) {
         console.log(err.message);
         res.redirect('/admin/login');
@@ -57,7 +57,7 @@ const requireAdmin = (req, res, next) => {
 const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
-    jwt.verify(token, 'SECRET', async (err, decodedToken) => {
+    jwt.verify(token, process.env.SECRET, async (err, decodedToken) => {
       if (err) {
         res.locals.user = null;
         next();
@@ -78,7 +78,7 @@ const checkUser = (req, res, next) => {
 const checkAdmin = (req, res, next) => {
   const adminToken = req.cookies.admin
   if (adminToken) {
-    jwt.verify(adminToken, 'ADMINSECRET', async (err, decodedToken) => {
+    jwt.verify(adminToken, process.env.ADMINSECRET, async (err, decodedToken) => {
       if (err) {
         console.log(err);
         res.locals.admin = null;

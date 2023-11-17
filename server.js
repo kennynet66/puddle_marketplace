@@ -1,19 +1,23 @@
+// import the required modules
 const express = require('express');
-const { requireAuth, checkUser,requireAdmin, checkAdmin,  addItems } = require('./middleware/authMiddleware');
 const mongoose = require('mongoose')
 const app = express();
 const authRoutes = require('./routes/authRoutes');
 const path = require('path');
+const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const adminRoutes = require('./routes/adminRoutes');
 const multer = require('multer');
 const itemRoutes = require('./routes/itemRoutes');
 
 //middleware
-app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const { requireAuth, checkUser,requireAdmin, checkAdmin,  addItems } = require('./middleware/authMiddleware');
 app.use(express.json());
 app.use(cookieParser());
+
+// Static folders
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 //view engine
 app.set('view engine','ejs');
@@ -28,7 +32,8 @@ app.use(authRoutes);
 app.use(adminRoutes);
 app.use(itemRoutes);
 
-mongoose.connect('mongodb+srv://kennynet66:kennynet66@cluster0.dcfto7l.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+// connect to the database
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(()=> {
     console.log("Connected to MongoDB");
     //Start server

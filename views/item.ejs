@@ -1,6 +1,17 @@
 <%- include('partials/header') -%>
 <title>puddle | <%= item.item_name %></title>
 
+<!-- 
+    - This will display a specific item's details.
+    - The item details including:
+        - Item name.
+        - Price.
+        - Category.
+        - Image.
+        - Description.
+    - Add to cart button.
+    - Back button which returns the user back to the dashboard.
+ -->
 <header>
     <div class="container">
         <div class="row">
@@ -18,14 +29,3 @@
         </div>
     </div>
 </header>
-
-<!-- <div class="container">
-    <div class="row">
-        <h1 class="text-white text-center">View Item</h1>
-        <h1 class="text-white"><%= item.item_name %></h1>
-        <img src="<%= item.photo %>" style="width: 20%;">
-        <h1 class="text-white"><%= item.price %></h1>
-        <h1 class="text-white"><%= item.description %></h1>
-        <h1 class="text-white"><%= item.category %></h1>
-    </div>
-</div> -->
