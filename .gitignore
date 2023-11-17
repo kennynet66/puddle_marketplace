@@ -1,4 +1,9 @@
 node_modules/
 uploads/
+<<<<<<< HEAD
 package-lock.json
 .vscode
+=======
+.vscode
+.env
+>>>>>>> 3e8af2b... edit
