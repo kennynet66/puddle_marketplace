@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const Admin = require('../models/admin');
 const Item = require('../models/item');
 const url = require('url')
-const url = require('url')
 
 const handleErrors = (err) => {
     console.log(err.message, err.code);
