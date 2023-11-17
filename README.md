@@ -27,12 +27,27 @@ Here are some of the exciting features that Puddle offers:
 
 ## Getting Started
 
-To get started with Puddle, follow these simple steps:
+To start using Puddle, follow these simple steps:
 
-1. Clone, fork or download the repository [Clone](https://github.com/kennynet66/puddle_marketplace).
-2. Makesure you have the latest version of Node installed.
-3. Open up the project directory on your command line and run `npm install`.
-4. To run the development server, run `npm run dev` and the server will run on port [4000](http://localhost:4000)
+1. Clone, fork, or download the repository:
+    - [Puddle Repository](https://github.com/kennynet66/puddle_marketplace)
+2. Make sure you have the latest version of Node.js installed.
+
+3. Open the project directory in your command line and run:
+
+    ```bash
+    npm install
+    ```
+
+   This installs the project dependencies.
+
+4. To launch the development server, run:
+
+    ```bash
+    npm run dev
+    ```
+
+   The server will run on port [4000](http://localhost:4000).
 
 ## Usage
 
