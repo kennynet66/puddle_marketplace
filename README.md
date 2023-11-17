@@ -29,12 +29,10 @@ Here are some of the exciting features that Puddle offers:
 
 To get started with Puddle, follow these simple steps:
 
-1. Visit our website at [www.puddle.com](https://www.puddle.com).
-2. Sign up or log in to your Puddle account.
-3. Browse through our extensive product categories.
-4. Add products to your cart.
-5. Proceed to checkout and complete your order.
-6. Sit back and relax while we deliver your items to your doorstep!
+1. Clone, fork or download the repository [Clone](https://github.com/kennynet66/puddle_marketplace).
+2. Makesure you have the latest version of Node installed.
+3. Open up the project directory on your command line and run `npm install`.
+4. To run the development server, run `npm run dev` and the server will run on port [4000](http://localhost:4000)
 
 ## Usage
 
