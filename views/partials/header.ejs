@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
     <!-- Header links -->
 <head>
     <meta charset="UTF-8">
@@ -124,5 +125,109 @@
 <!-- Bootstrap javaScript CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 >>>>>>> 6f5c575... Perfected admin end
+=======
+<!-- Header links -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../public/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/" style='font-family: "Sofia", sans-serif;'>Puddle</a>
+      <div class="justify-content-end">
+
+        <!-- Hamburger button to be displayed on medium and small screens -->
+        <button class="navbar-toggler" type="button" style='font-family: "Sofia", sans-serif;' data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <!-- <span class="navbar-toggler-icon"></span> -->Menu
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <!-- If the user is authenticated the following navbar content will be visible -->
+          <% if (user || admin) {%>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- View profile Icon -->
+            <li class="nav-item d-none d-lg-block">
+              <a class="nav-link text-dark text-lg" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"><i class="bi bi-person-circle"></i></a>
+            </li>
+            <!-- Remove profile Icon on medium and small screens and replace it with the word profile -->
+            <li class="nav-item d-block d-lg-none">
+              <a class="nav-link text-dark text-lg" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Profile</i></a>
+            </li>
+            <!-- Contact us button that links to the contact page -->
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/contact">Feed Back</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/dashboard">Dashboard</a>
+            </li>
+          </ul>
+
+          <!-- Search area -->
+          <form class="d-none d-lg-flex m-2">
+            <input class="form-control me-2 w-75" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success"><i class="bi bi-search"></i></button>
+          </form>
+
+          <!-- Logout button -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-white btn btn-danger" href="/logout">log out</a>
+            </li>
+          </ul>
+          <% } else { %>
+          <!-- If the user is not authenticated the following options are available -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">Signup</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Log in</a>
+            </li>
+          </ul>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- An off canvas to display the user details -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Your profile</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <h1>User details </h1>
+      <hr>
+      <!-- If the user is logged in the following will be parsed to the front end -->
+      <% if (user) { %>
+      <span class="badge text-bg-success"><%= user.state %></span>
+      <img src=<%= user.profile_photo %> class="w-100 rounded" alt="Your profile photo" class="profile">
+      <hr>
+      <h2 class="lead">User name: <%= user.full_name %></h2>
+      <h2 class="lead">Email: <%= user.email %></h2>
+      <% } %>
+      <% if (admin) { %>
+      <span class="badge text-bg-success"><%= admin.state %></span>
+      <img src=<%= admin.profile_photo %> class="w-100 rounded" alt="Your profile photo" class="profile">
+      <hr>
+      <h2 class="lead">User name: <%= admin.full_name %></h2>
+      <h2 class="lead">Email: <%= admin.email %></h2>
+      <% } %>
+    </div>
+  </div>
+  <!-- Bootstrap javaScript CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+>>>>>>> 6de5b4ea0df9c74a351b53c897efa4dd76a36647
 </body>
+
 </html>

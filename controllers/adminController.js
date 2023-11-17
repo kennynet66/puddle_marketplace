@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const Admin = require('../models/admin');
 const Item = require('../models/item');
 const url = require('url')
+const url = require('url')
 
 const handleErrors = (err) => {
     console.log(err.message, err.code);
@@ -17,7 +18,17 @@ const handleErrors = (err) => {
         return errors;
     }
 
+    if (err.message.includes('Email does not exist')) {
+        errors.password = "Not admin email";
+        return errors;
+    }
+
     if (err.message.includes('incorrect password')) {
+        errors.password = "Incorrect password";
+        return errors;
+    }
+
+    if (err.message.includes('invalid password')) {
         errors.password = "Incorrect password";
         return errors;
     }
@@ -48,7 +59,7 @@ const handleErrors = (err) => {
 //create an admin token
 const maxAge = 3 * 24 * 60 * 60
 const createToken = (id) => {
-    return jwt.sign({ id }, 'ADMINSECRET', {
+    return jwt.sign({ id }, process.env.ADMINSECRET, {
         expiresIn: maxAge
     })
 }
@@ -123,6 +134,7 @@ module.exports.item_put = async (req,res) => {
             console.log("i found the item");
             const updatedItem = await Item.findById(_id);
             console.log(updatedItem)
+            console.log(updatedItem)
             res.status(200).json({ updatedItem });
         } else {
             console.log("I could not find the item");
@@ -151,9 +163,16 @@ module.exports.item_delete = async (req,res) => {
     }
 }
 
-module.exports.item_gets = async (req, res, next) => {
-    let { query,pathname } = url.parse(req.url,true)
-    console.log(query.id);
-    // res.status(200).json(query.id)
-    res.render('edit');
+module.exports.item_gets = async (req, res) => {
+    let { query } = url.parse(req.url,true)
+    try {
+        const item = await Item.findById(query.id);
+        if (item) {
+            res.render('edit');
+        } else {
+            res.render('404');
+        }
+    } catch (err) {
+        res.render('404');
+    }
 }

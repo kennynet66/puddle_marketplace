@@ -41,7 +41,7 @@ userSchema.statics.login = async function (email, password) {
       if (auth) {
         return user; // Return the user if the password matches
       } else {
-        throw new Error('Invalid password');
+        throw Error('Invalid password');
       }
     }
   
@@ -50,10 +50,10 @@ userSchema.statics.login = async function (email, password) {
         if (adminAuth) {
           return admin; // Return the admin if the password matches
         } else {
-          throw new Error('Invalid password');
+          throw Error('Invalid password');
         }
       }
-      throw new Error('Email does not exist');
+      throw Error('Email does not exist');
     }
   
 

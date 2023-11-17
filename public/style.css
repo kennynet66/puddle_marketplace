@@ -1,3 +1,7 @@
+/* ::-webkit-scrollbar{
+    display: none;
+} */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,6 +16,7 @@ body {
     color: #fff;
     background-color: rgba(57, 14, 156, 0.486);
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 nav {
     background-color: rgba(57, 14, 156, 0.486);
@@ -146,131 +151,19 @@ li.tag{
 li.tag:hover {
     background-color: rgb(219, 52, 34);
 }
+=======
+>>>>>>> 6de5b4ea0df9c74a351b53c897efa4dd76a36647
 
-.profile {
-    width: 30%;
-}
-.content a {
-    color: #fff;
-    background-color: red;
-    padding: 10px;
-    border-radius: 10px;
-}
-.back_btn {
-    margin: 5px;
-    padding: 15px;
+.instruction {
+    display: none;
 }
 
-.search_place {
-    padding: 15px;
-    display: flex;
-    justify-content: center;
+#password:focus + .instruction,
+#email:focus + .instruction,
+#full_name:focus + .instruction {
+    display: block;
 }
-
-.search_bar {
-    border: 2px solid #000;
-    padding-left: 30px;
-    width: 95%;
-}
-
-
-.item_content {
-    background-color: #f2f2f28c;
-    border-radius: 10px;
-    padding: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 20px;
-}
-
-.card {
-    width: calc(25% - 30px);
-    margin: 15px;
-    background-color: blue;
-    padding: 15px;
-}
-
-.admin_details {
-    background-color: #f2f2f2;
-    color: #000;
-    padding: 15px;
-    margin: 15px;
-    width: 30%;
-    border-radius: 10px;
-}
-.admin_details h3 {
-    padding: 10px;
-}
-
-.admin_content {
-    margin-bottom: 100px;
-    background-color: #f2f2f28c;
-    width: 45%;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 0px;
-}
-
-.admin_card {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 20px;
-}
-
-.admin_content img {
-    width: 100%;
-    border-radius: 10px;
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-.del_div a {
-    background-color: greenyellow;
-    border-radius: 10px;
-    padding: 10px;
-}
-.del_div {
-    padding: 15px;
-}
-a.delete {
-    background-color: salmon;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 10px;
-    color: white;
-}
-a.edit {
-    background-color: greenyellow;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 10px;
-    color: white;
-}
-
-.edit_file {
-    padding: 20px;
-    width: 50%;
-}
-.edit_fil {
-    padding: 20px;
-    width: 70%;
-}
-
-.edit_file input {
-    border: 2px solid #000;
-    width: 100%;
-    margin: 3%;
-}
-
-.sub {
-    background-color: greenyellow;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 10px;
-    border: none;
-    width: 30%;
-}
+<<<<<<< HEAD
 
 .sub:hover {
     background-color: yellowgreen;
@@ -408,3 +301,5 @@ a.edit {
 }
 =======
 >>>>>>> 6f5c575... Perfected admin end
+=======
+>>>>>>> 6de5b4ea0df9c74a351b53c897efa4dd76a36647

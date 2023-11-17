@@ -3,6 +3,7 @@
 <header>
     <title>puddle | admin</title>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <% if (admin) {%>
         <div class="admin_details">
             <h1>Admin details</h1>
@@ -11,19 +12,79 @@
             <h3>email: <%= admin.email %></h3>
         </div><hr>
         
+=======
+<!-- Search area -->
+<form class="d-flex d-lg-none m-2">
+  <input class="form-control me-2 w-75" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+  <!-- Calculate the number of items -->
+    <% var itemno = 0 %>
+    <% var phones = 0 %>
+    <% var shoes = 0 %>
+
+<% if (items && items.length > 0) { %>
+  <% items.forEach(item => { %>
+    <% if (item.category === "phones") { %>
+      <% phones += 1 %>
+>>>>>>> 6de5b4ea0df9c74a351b53c897efa4dd76a36647
     <% } %>
-    <div class="admin_card">
+  <% })} %>
+
+  <% if (items && items.length > 0) { %>
+    <% items.forEach(item => { %>
+      <% if (item.category === "shoes") { %>
+        <% shoes += 1 %>
+      <% } %>
+    <% })} %>
+
+  
+
+    <% if (items && items.length > 0) { %>
+      <% items.forEach(item => { %>
+          <% itemno+=1 %>
+    <% })} %>
+
+<!-- Display the admin details -->
+<div class="container-lg">
+  <div class="row mt-2">
+    <div class="card border-success m-3 col-3" style="width: 19rem;">
+      <% if (admin) { %>
+      <div class="card-header">Admin Details</div>
+        <div class="card-body text-success">
+          <h6 class="card-title">Fullname: <%= admin.full_name %> </h6>
+          <h6>email: <%= admin.email %></h6>
+        </div>
+        <% } %>
+    </div>
+    <!-- Display product statistics -->
+    <div class="card border-success m-3 col-3" style="width: 19rem;">
+      <div class="card-header">Product statistics</div>
+        <div class="card-body text-success">
+          <h6 class="card-title">Total products: <%= itemno %> </h6>
+          <h6 class="card-title">Number of phones: <%= phones %> </h6>
+          <h6 class="card-title">Number of shoes: <%= shoes %> </h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="container-xxl">
+      <div class="row">
         <% if (items && items.length > 0) { %>
           <% items.forEach(item => { %>
-            <div class="admin_content">
-              <h3>Item Id: <%= item._id %></h3>
-              <h3>Item: <%= item.item_name %></h3>
-              <p>Price: <%= item.price %></p>
-              <p>Description: <%= item.description %></p>
-              <p>Category: <%= item.category %></p>
-              <div class="del_div">
-                <a href="#" class="delete" data-item_id="<%= item._id %>">delete</a>
+              <div class="card m-2 p-2" style="width: 18rem;">
+                <p class="card-text">ID: <%= item._id%></p>
+                <img src="<%= item.photo %>" class="card-img-top" alt="<%= item.item_name %>" height="100%" style="object-fit: cover;">
+                <div class="card-body">
+                  <p class="card-text"><%= item.description%></p>
+                </div>
+                <div class="d-flex">
+                  <a href="#" class="delete btn btn-danger m-2 btn-sm" data-item_id="<%= item._id %>">delete</a>
+                  <a href="/item?id=<%= item._id %>&name=<%= item.item_name %>&price=<%=item.price%>" class="edit btn btn-success m-2 btn-sm" data-item_id="<%= item._id %>">Edit</a>
+                </div>
               </div>
+<<<<<<< HEAD
             </div>
           <% })} %>
         </div>
@@ -101,12 +162,18 @@
                   <a href="/item?id=<%= item._id %>&name=<%= item.item_name %>&price=<%=item.price%>" class="edit btn btn-success m-2 btn-sm" data-item_id="<%= item._id %>">Edit</a>
                 </div>
               </div>
+=======
+>>>>>>> 6de5b4ea0df9c74a351b53c897efa4dd76a36647
         <% })} %>
       </div>
     </div>
 
+<<<<<<< HEAD
 >>>>>>> 6f5c575... Perfected admin end
+=======
+>>>>>>> 6de5b4ea0df9c74a351b53c897efa4dd76a36647
 </header>
+
 <script>
     const deleteButtons = document.querySelectorAll('.delete');
   

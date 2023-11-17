@@ -1,12 +1,16 @@
 
 const form = document.querySelector('form');
-const errorDiv = document.querySelector('.error.div');
+const emailerr = document.querySelector('.emailerr');
+const passerr = document.querySelector('.passerr');
+const nameerr = document.querySelector('.nameerr');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     //reset errors
-    errorDiv.textContent='';
+    emailerr.textContent='';
+    passerr.textContent='';
+    nameerr.textContent='';
 
     const full_name = form.full_name.value;
     const email = form.email.value;
@@ -20,7 +24,9 @@ form.addEventListener('submit', async (e) => {
         });
         const data = await res.json();
         if (data.errors) {
-            errorDiv.innerHTML = `${data.errors.email}<br> ${data.errors.password}<br> ${data.errors.full_name}`;
+            emailerr.textContent = data.errors.email;
+            passerr.textContent = data.errors.password;
+            nameerr.textContent = data.errors.full_name;
         }
 
         if (data.user) {

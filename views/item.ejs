@@ -1,0 +1,31 @@
+<%- include('partials/header') -%>
+<title>puddle | <%= item.item_name %></title>
+
+<!-- 
+    - This will display a specific item's details.
+    - The item details including:
+        - Item name.
+        - Price.
+        - Category.
+        - Image.
+        - Description.
+    - Add to cart button.
+    - Back button which returns the user back to the dashboard.
+ -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="<%= item.photo %>" class="m-2 rounded" style="width: 100%; object-fit: cover;">
+            </div>
+            <div class="col-md-6">
+                <h1 class="text-white display-5"><%= item.item_name %></h1>
+                <p class="text-white lead"><%= item.description %></p>
+                <p class="text-white lead">Price: <%= item.price %></p>
+                <p class="text-white lead">Item Category: <%= item.category %></p>
+                <a href="#" class="btn m-2 btn-warning">Add to cart</a>
+                <a href="/dashboard" class="btn m-2 btn-danger">Back</a>
+            </div>
+        </div>
+    </div>
+</header>
