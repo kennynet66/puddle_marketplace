@@ -2,13 +2,14 @@
 const express = require('express');
 const mongoose = require('mongoose')
 const app = express();
-const authRoutes = require('./routes/authRoutes');
+const multer = require('multer');
 const path = require('path');
 const dotenv = require('dotenv').config();
 const cookieParser = require('cookie-parser');
+const routes = require('./routes/routes');
 const adminRoutes = require('./routes/adminRoutes');
-const multer = require('multer');
 const itemRoutes = require('./routes/itemRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 //middleware
 const { requireAuth, checkUser,requireAdmin, checkAdmin,  addItems } = require('./middleware/authMiddleware');
@@ -28,6 +29,7 @@ app.get('/', (req,res) => {res.render('landing')})
 app.get('/dashboard', requireAuth, addItems, (req,res) => {res.render('dashboard')})
 app.get('/admin', checkAdmin, requireAdmin, addItems, (req,res) => { res.render('admin')});
 app.get('/create', checkAdmin, requireAdmin, (req,res) => { res.render('adminCreate')});
+app.use(routes);
 app.use(authRoutes);
 app.use(adminRoutes);
 app.use(itemRoutes);
