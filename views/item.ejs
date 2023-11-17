@@ -1,8 +1,31 @@
 <%- include('partials/header') -%>
+<title>puddle | <%= item.item_name %></title>
 
-<div class="container">
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="<%= item.photo %>" class="m-2 rounded" style="width: 100%; object-fit: cover;">
+            </div>
+            <div class="col-md-6">
+                <h1 class="text-white display-5"><%= item.item_name %></h1>
+                <p class="text-white lead"><%= item.description %></p>
+                <p class="text-white lead">Price: <%= item.price %></p>
+                <p class="text-white lead">Item Category: <%= item.category %></p>
+                <a href="#" class="btn m-2 btn-warning">Add to cart</a>
+                <a href="/dashboard" class="btn m-2 btn-danger">Back</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- <div class="container">
     <div class="row">
         <h1 class="text-white text-center">View Item</h1>
-        <p class="text-white"><%= item.item_name %></p>
+        <h1 class="text-white"><%= item.item_name %></h1>
+        <img src="<%= item.photo %>" style="width: 20%;">
+        <h1 class="text-white"><%= item.price %></h1>
+        <h1 class="text-white"><%= item.description %></h1>
+        <h1 class="text-white"><%= item.category %></h1>
     </div>
-</div>
+</div> -->

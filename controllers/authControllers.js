@@ -94,6 +94,7 @@ module.exports.signup_post = async (req, res) => {
 module.exports.logout = (req, res) => {
     res.cookie('jwt', '', { httpOnly: true, maxAge: 1 });
     res.cookie('admin', '', { httpOnly: true, maxAge: 1 });
+    res.cookie('item', '', { httpOnly: true, maxAge: 1 });
     res.redirect('/');
 }
 

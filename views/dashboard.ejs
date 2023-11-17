@@ -1,4 +1,7 @@
 <%- include('partials/header'); -%>
+
+<title>Puddle | Dashboard</title>
+
 <header>
 
   <!-- Search area to be displayed on medium & small screens -->
@@ -8,7 +11,7 @@
   </form>
 
   <!-- Filter Elements -->
-  <div class="container bg-light border" style="overflow-x: scroll; white-space: nowrap;">
+  <!-- <div class="container bg-light border" style="overflow-x: scroll; white-space: nowrap;">
     <div class="row">
       <div class="filter-btns d-flex">
         <button class="btn btn-outline-success m-2">Shoes</button>
@@ -25,11 +28,11 @@
         <button class="btn btn-outline-success m-2">Office and school supplies</button>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- item Cards -->
   <div class="container-xxl d-flex ">
-    <div class="row p-0 d-flex col-9">
+    <div class="row p-0 d-flex col-lg-9">
       <% if (items && items.length > 0) { %>
       <% items.forEach(item => { %>
       <form class="card m-2 p-2" style="width: 18rem;">
@@ -45,24 +48,8 @@
       </form>
       <% })} %>
     </div>
-    <div class="container-lg">
-      <div class="card m-2  col-1 position-fixed" style="width: 20rem;">
-        <div class="card-body">
-          <h5 class="card-title">Your Cart<span id="cart-badge" class="badge ms-2 text-bg-secondary">0</span></h5>
-          <hr>
-          <div>
-            <h3>Items</h3>
-            <div id="cart-details"></div>
-          </div>
-          <hr>
-          <div id="total-cost" style="font-size: 25px; font-weight: 500;"></div>
-          <a href="checkout" class="btn btn-warning m-2 rounded">Place Your order</a>
-        </div>
-      </div>
-    </div>
   </div>
 
 </header>
 
 <%- include('partials/footer'); -%>
-<script src="../public/cartFront.js"></script>

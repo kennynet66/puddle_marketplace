@@ -17,7 +17,7 @@ module.exports.item_get = async (req,res) => {
         
         if (item) {
             const token = createToken(query.id);
-            res.cookie('item', token, {httpOnly: true, maxAge: maxAge * 1000});
+            res.cookie('item', token, {httpOnly: true });
             res.redirect('/view')
         } else {
             res.render('404');
