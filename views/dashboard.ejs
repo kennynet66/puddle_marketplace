@@ -31,12 +31,19 @@
                   <%= item.price %>
                 </span></p>
               <p class="card-text text-success">in stock</p>
-              <a class="cart btn btn-success btn-sm" onclick="get_price(<%= item.price %>), get_name('<%= item.item_name%>', <%= item.price %>)" data-item_id="<%= item._id %>">Add to cart</a>
+              <% if (user) { %>
+                <a class="cart btn btn-success btn-sm" href="/cart?userid=<%= user._id %>&itemid=<%= item.id %>&name=<%= item.item_name %>">Add to cart</a>
+              <% } %>
+              <% if (admin) { %>
+                <a class="cart btn btn-success btn-sm" href="/cart?userid=<%= admin._id %>&itemid=<%= item.id %>&name=<%= item.item_name %>">Add to cart</a>
+              <% } %>
               <a href="/item/search?id=<%= item._id %>&name=<%= item.item_name %>" class="btn btn-success btn-sm">View
                 item</a>
             </div>
           </div>
-          <% })} %>
+          <% })} else { %>
+            <h1 class="text-white text-center display-4 lead"> No Items Available</h1>
+            <% } %>
     </div>
   </div>
 </header>

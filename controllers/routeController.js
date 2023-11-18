@@ -3,6 +3,8 @@ const User = require('../models/User');
 const {SENDMAIL} = require('./mail');
 const { payment } = require('paypal-rest-sdk');
 const paypal = require('paypal-rest-sdk');
+const url = require('url');
+const Cart = require('../models/cart')
 
 const options = {
     from: {
@@ -115,3 +117,19 @@ paypal.payment.create(create_payment_json, function(error, payment) {
 });
 
 }
+
+module.exports.cart_get = async (req, res) => {
+    const { query } = url.parse(req.url, true);
+
+    try {
+        const newCartEntry = await Cart.create({
+            user: query.userid,
+            products: [query.itemid],
+        });
+        console.log(newCartEntry.products )
+        res.status(200).json(newCartEntry);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};

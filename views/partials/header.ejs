@@ -1,40 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Header links -->
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
-
-<body>
-
-      
-    <!-- An off canvas to display the user details -->
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Your profile</h5>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <!-- If the user is logged in the following will be parsed to the front end -->
-        <% if (user) { %>
-            <span class="badge text-bg-success"><%= user.state %></span>
-            <img src=<%= user.profile_photo %> class="w-100 rounded" alt="Your profile photo" class="profile"><hr>
-            <h2 class="lead">User name: <%= user.full_name %></h2>
-            <h2 class="lead">Email: <%= user.email %></h2>
-        <% } %>
-        <% if (admin) { %>
-            <span class="badge text-bg-success"><%= admin.state %></span>
-            <img src=<%= admin.profile_photo %> class="w-100 rounded" alt="Your profile photo" class="profile"><hr>
-            <h2 class="lead">User name: <%= admin.full_name %></h2>
-            <h2 class="lead">Email: <%= admin.email %></h2>
-        <% } %>
-        </div>
-      </div>
 <!-- Bootstrap javaScript CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
@@ -118,11 +83,10 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <h1>User details </h1>
-      <hr>
       <!-- If the user is logged in the following will be parsed to the front end -->
       <% if (user) { %>
-      <span class="badge text-bg-success"><%= user.state %></span>
+      <h2 class="lead">ID: <%= user._id %></h2>
+      <span class="badge text-bg-warning"><%= user.state %></span>
       <img src=<%= user.profile_photo %> class="w-100 rounded" alt="Your profile photo" class="profile">
       <hr>
       <h2 class="lead">User name: <%= user.full_name %></h2>
