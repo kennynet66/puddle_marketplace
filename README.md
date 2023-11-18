@@ -1,5 +1,7 @@
 # Puddle - Your Seamless Ecommerce Shopping Experience
 
+![My pic](./uploads/1700210178583.jpg)
+
 Welcome to **Puddle**, your go-to destination for a seamless ecommerce shopping experience! 🌟
 
 ## Table of Contents
