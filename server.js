@@ -11,6 +11,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const itemRoutes = require('./routes/itemRoutes');
 const authRoutes = require('./routes/authRoutes');
 const { checkItem } = require('./middleware/itemCheck');
+const paypal = require('paypal-rest-sdk');
 
 //middleware
 const { requireAuth, checkUser,requireAdmin, checkAdmin,  addItems } = require('./middleware/authMiddleware');
@@ -31,10 +32,12 @@ app.get('/dashboard', requireAuth, addItems, (req,res) => {res.render('dashboard
 app.get('/admin', checkAdmin, requireAdmin, addItems, (req,res) => { res.render('admin')});
 app.get('/create', checkAdmin, requireAdmin, (req,res) => { res.render('adminCreate')});
 app.get('/view', addItems, checkItem, (req,res) => {res.render('item')});
+app.get('/pay', (req,res) => {res.render('pay')});
 app.use(routes);
 app.use(authRoutes);
 app.use(adminRoutes);
 app.use(itemRoutes);
+
 
 // connect to the database
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
