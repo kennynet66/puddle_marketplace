@@ -1,7 +1,7 @@
 # Puddle - Your Seamless Ecommerce Shopping Experience
 
 <p align="center">
-  <img src="puddle.png" alt="My pic" width="200" style="border-radius:50%" />
+  <img src="puddle.png" alt="My pic" width="200" style="border-radius:50%";/>
 </p>
 
 
