@@ -1,11 +1,16 @@
-const mongoose = require('mongoose');
 const User = require('../models/User');
 const {SENDMAIL} = require('./mail');
-const { payment } = require('paypal-rest-sdk');
 const paypal = require('paypal-rest-sdk');
-const url = require('url');
-const Cart = require('../models/cart')
+const Cart = require('../models/cart');
+const jwt = require('jsonwebtoken');
 
+const maxAge = 3 * 24 * 60 * 60
+// Create a json web token for user authentication
+const createToken = (id) => {
+    return jwt.sign({ id }, process.env.SECRET, {
+        expiresIn: maxAge
+    });
+}
 const options = {
     from: {
         name: "Kenedy Maina",
@@ -90,15 +95,15 @@ module.exports.pay_post = (req,res) =>{
                     {
                         "name": "Item 1",
                         "sku": "12345",
-                        "price": "100.00",
+                        "price": Cart.cartValue.toString(),
                         "currency": "USD",
                         "quantity": "1"
                     }
                 ]
             },
             "amount": {
-                "currency": "KSH",
-                "total": "100.00"
+                "currency": "USD",
+                "total": Cart.cartValue.toString()
             },
             "description": "This is a test transaction"
     }]
@@ -122,10 +127,22 @@ module.exports.cart_post = async (req, res) => {
     const { user, products, cartStatus, cartValue } = req.body;
 
     try {
-        const cart =await Cart.create({ user, products, cartValue, cartStatus });
+        const cart = await Cart.create({ user, products, cartStatus, cartValue });
+        const token = createToken(cart._id)
+        res.cookie('jwt', token, { maxAge: maxAge * 1000, httpOnly: true });
         res.status(200).json(cart);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+    
+
+    // try {
+    //     const cart =await Cart.create({ user, products, cartValue, cartStatus });
+    //     res.status(200).json(cart);
+    // } catch (err) {
+    //     console.error(err);
+    //     res.status(500).json({ error: 'Internal Server Error' });
+    // }

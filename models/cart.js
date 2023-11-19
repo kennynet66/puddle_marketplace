@@ -16,7 +16,7 @@ const cartSchema = new mongoose.Schema({
     },
     cartStatus: {
         type: String,
-        required: true,
+        required: false,
         default: 'pending'
     },
 })

@@ -116,7 +116,9 @@ function logInformation() {
         user: itemUserId,
       })
     })
-    .then(res => res.json())
+    .then(
+      location.assign('/checkout')
+  )
     .then(data => {
         console.log(data);
       })

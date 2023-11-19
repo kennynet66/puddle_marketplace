@@ -32,7 +32,7 @@ app.get('/dashboard', requireAuth, addItems, (req,res) => {res.render('dashboard
 app.get('/admin', checkAdmin, requireAdmin, addItems, (req,res) => { res.render('admin')});
 app.get('/create', checkAdmin, requireAdmin, (req,res) => { res.render('adminCreate')});
 app.get('/view', addItems, checkItem, (req,res) => {res.render('item')});
-app.get('/pay', (req,res) => {res.render('pay')});
+app.get('/checkout', (req,res) => {res.render('pay')});
 app.use(routes);
 app.use(authRoutes);
 app.use(adminRoutes);
