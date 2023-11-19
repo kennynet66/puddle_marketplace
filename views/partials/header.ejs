@@ -24,7 +24,7 @@
 
         <!-- Hamburger button to be displayed on medium and small screens -->
         <button class="navbar-toggler" type="button" style='font-family: "Sofia", sans-serif;' data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <!-- <span class="navbar-toggler-icon"></span> -->Menu
+          Menu
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -46,7 +46,15 @@
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="/dashboard">Dashboard</a>
             </li>
+
+            <li class="nav-item">
+              <a type="button" data-bs-toggle="offcanvas"data-bs-target="#offcanvasTop" role="button" aria-controls="offcanvasTop" class="btn btn-primary">
+                Cart <div class="badge update text-bg-secondary"></div>
+              </a>
+            </li>
           </ul>
+          <!-- <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" >Toggle top offcanvas</button> -->
+
 
           <!-- Search area -->
           <form class="d-none d-lg-flex m-2">
@@ -76,6 +84,23 @@
     </div>
   </nav>
 
+  <div class="offcanvas offcanvas-top" data-bs-scroll="true" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasTopLabel">Your cart</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="container">
+        <div class="row">
+          <h1 class="lead">Products</h1>
+          <div class="displayitem border rounded text-start"></div>
+        </div>
+      </div>
+      <hr>
+      <button class="totalcost btn btn-outline-warning"></button>
+      <a href="#" class="btn btn-success">Checkout</a>
+    </div>
+  </div>
   <!-- An off canvas to display the user details -->
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
@@ -85,19 +110,19 @@
     <div class="offcanvas-body">
       <!-- If the user is logged in the following will be parsed to the front end -->
       <% if (user) { %>
-      <h2 class="lead">ID: <%= user._id %></h2>
+      <h2 class="lead"><strong>ID:</strong> <%= user._id %></h2>
       <span class="badge text-bg-warning"><%= user.state %></span>
       <img src=<%= user.profile_photo %> class="w-100 rounded" alt="Your profile photo" class="profile">
       <hr>
-      <h2 class="lead">User name: <%= user.full_name %></h2>
-      <h2 class="lead">Email: <%= user.email %></h2>
+      <h2 class="lead"><strong>User name: </strong> <%= user.full_name %></h2>
+      <h2 class="lead"><strong>Email:</strong> <%= user.email %></h2>
       <% } %>
       <% if (admin) { %>
       <span class="badge text-bg-success"><%= admin.state %></span>
       <img src=<%= admin.profile_photo %> class="w-100 rounded" alt="Your profile photo" class="profile">
       <hr>
-      <h2 class="lead">User name: <%= admin.full_name %></h2>
-      <h2 class="lead">Email: <%= admin.email %></h2>
+      <h2 class="lead"><strong>User name: </strong> <%= admin.full_name %></h2>
+      <h2 class="lead"><strong>Email:</strong> <%= admin.email %></h2>
       <% } %>
     </div>
   </div>

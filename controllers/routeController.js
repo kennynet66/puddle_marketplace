@@ -122,12 +122,8 @@ module.exports.cart_get = async (req, res) => {
     const { query } = url.parse(req.url, true);
 
     try {
-        const newCartEntry = await Cart.create({
-            user: query.userid,
-            products: [query.itemid],
-        });
-        console.log(newCartEntry.products )
-        res.status(200).json(newCartEntry);
+        const cart = await Cart.create({ user:query.userid, products:query.itemid })
+        res.status(200).json(cart);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });

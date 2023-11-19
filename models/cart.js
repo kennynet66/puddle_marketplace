@@ -6,7 +6,7 @@ const cartSchema = new mongoose.Schema({
         required: true
     },
     products: {
-        type: [String],
+        type: String,
         required: true
     },
     cartStatus: {
@@ -14,6 +14,11 @@ const cartSchema = new mongoose.Schema({
         required: true,
         default: 'pending'
     },
+    cartValue: {
+        type: Number,
+        required: true,
+        default: 0
+    }
 })
 
 cartSchema.pre('save', async function(next) {

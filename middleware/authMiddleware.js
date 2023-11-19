@@ -14,7 +14,6 @@ const requireAuth = (req, res, next) => {
         console.log(err.message);
         res.redirect('/login');
       } else {
-        console.log(decodedToken);
         next();
       }
     });
@@ -24,7 +23,6 @@ const requireAuth = (req, res, next) => {
         console.log(err.message);
         res.redirect('/login');
       } else {
-        console.log(decodedToken);
         next();
       }
     })
@@ -45,7 +43,6 @@ const requireAdmin = (req, res, next) => {
         console.log(err.message);
         res.redirect('/admin/login');
       } else {
-        console.log(decodedToken);
         next();
       }
     });
