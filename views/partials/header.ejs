@@ -98,7 +98,7 @@
       </div>
       <hr>
       <button class="totalcost btn btn-outline-warning"></button>
-      <a href="#" class="btn btn-success">Checkout</a>
+      <a href="" class="btn checkout btn-success">Checkout</a>
     </div>
   </div>
   <!-- An off canvas to display the user details -->
@@ -110,7 +110,7 @@
     <div class="offcanvas-body">
       <!-- If the user is logged in the following will be parsed to the front end -->
       <% if (user) { %>
-      <h2 class="lead"><strong>ID:</strong> <%= user._id %></h2>
+      <h2 class="lead usser" userid=" <%= user._id %>"><strong>ID:</strong> <%= user._id %></h2>
       <span class="badge text-bg-warning"><%= user.state %></span>
       <img src=<%= user.profile_photo %> class="w-100 rounded" alt="Your profile photo" class="profile">
       <hr>

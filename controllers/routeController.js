@@ -97,7 +97,7 @@ module.exports.pay_post = (req,res) =>{
                 ]
             },
             "amount": {
-                "currency": "USD",
+                "currency": "KSH",
                 "total": "100.00"
             },
             "description": "This is a test transaction"
@@ -118,11 +118,11 @@ paypal.payment.create(create_payment_json, function(error, payment) {
 
 }
 
-module.exports.cart_get = async (req, res) => {
-    const { query } = url.parse(req.url, true);
+module.exports.cart_post = async (req, res) => {
+    const { user, products, cartStatus, cartValue } = req.body;
 
     try {
-        const cart = await Cart.create({ user:query.userid, products:query.itemid })
+        const cart =await Cart.create({ user, products, cartValue, cartStatus });
         res.status(200).json(cart);
     } catch (err) {
         console.error(err);
