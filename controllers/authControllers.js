@@ -47,15 +47,6 @@ const createAdminToken = (id) => {
     })
 }
 
-// Render the login view
-module.exports.login_get = (req, res) => {
-    res.render('login');
-};
-
-// Render the signup view
-module.exports.signup_get = (req, res) => {
-    res.render('signup');
-};
 
 // Handle post requests to login a user
 module.exports.login_post = async (req, res) => {
