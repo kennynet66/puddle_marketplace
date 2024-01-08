@@ -11,6 +11,9 @@ require('dotenv').config();
 const app = express();
 require('multer');
 
+// Variables
+port = process.env.PORT
+
 //middleware
 app.use(express.json());
 app.use(cookieParser());
@@ -34,8 +37,8 @@ mongoose.connect(process.env.LOCAL_URI || process.env.MONGO_URI)
     .then(() => {
         console.log("Connected to MongoDB");
         //Start server
-        app.listen(4000, () => {
-            console.log("server is listening on port 4000");
+        app.listen(port, () => {
+            console.log("server is listening on port", `${port}`);
         })
     }).catch((error) => {
         console.log(error);

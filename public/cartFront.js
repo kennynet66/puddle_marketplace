@@ -1,4 +1,3 @@
-
 const totalCostDiv = document.getElementById('total-cost');
 const cartBadge = document.getElementById('cart-badge');
 const cartDetails = document.getElementById('cart-details');
