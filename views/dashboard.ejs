@@ -53,83 +53,103 @@
   </header>
 
   <script>
-const items = document.querySelectorAll('.addcartbtn');
-const displayCost = document.querySelector('.totalcost');
-const displayItem = document.querySelector('.displayitem');
-const usser = document.querySelector('.usser');
-const userId = usser.getAttribute('userid');
-const checkout = document.querySelector('.checkout');
-let badge = 0;
-let update = document.querySelector('.update');
-let totalCost = 0;
-let currentCost = 0;
+    // The cart button
+    const items = document.querySelectorAll('.addcartbtn');
 
-update.textContent = '0';
-displayCost.textContent = 'Total Cost: 00';
+    // Where the total cost of the cart will be displayed
+    const displayCost = document.querySelector('.totalcost');
 
-function cartTotal(itemPrice) {
-  currentCost += itemPrice;
-  totalCost = currentCost;
-  return totalCost;
-}
+    // Where items on the cart will be displayed
+    const displayItem = document.querySelector('.displayitem');
 
-// Declare arrays to store item names and prices
-const itemNamesArray = [];
-const priceArray = [];
+    // User ID will be displayed here
+    const usser = document.querySelector('.usser');
+    const userId = usser.getAttribute('userid');
 
-items.forEach(item => {
-  item.addEventListener('click', (e) => {
-    badge += 1;
-    update.textContent = badge;
+    // Checkout button
+    const checkout = document.querySelector('.checkout');
 
-    let itemPrice = parseFloat(item.getAttribute('price'));
-    let itemName = item.getAttribute('name');
-    totalCost = cartTotal(itemPrice);
+    // The badge number to be updated
+    let update = document.querySelector('.update');
 
-    displayItem.innerHTML += `- ${itemName} @ ${itemPrice} <a class="text-danger border-0">Remove </a><br>`;
+    // Initialize counter variables
+    let badge = 0;
+    let totalCost = 0;
+    let currentCost = 0;
 
-    itemNamesArray.push(itemName);
-    priceArray.push(itemPrice);
+    update.textContent = '0';
+    displayCost.textContent = 'Total Cost: 00';
 
-    displayCost.textContent = "Total Cost: " + totalCost;
+    function cartTotal(itemPrice) {
+      currentCost += itemPrice;
+      totalCost = currentCost;
+      return totalCost;
+    }
 
-    logInformation();
-  });
-});
+    // Declare arrays to store item names and prices
+    const itemNamesArray = [];
+    const priceArray = [];
 
-function logInformation() {
-  checkout.addEventListener('click', (e) => {
-    e.preventDefault();
-    let itemNames = itemNamesArray.join(',');
-    let itemTotal = totalCost;
-    let itemUserId = userId;
+    items.forEach(item => {
+      item.addEventListener('click', (e) => {
+        badge += 1;
+        update.textContent = badge;
 
-    console.log("Starting fetch")
-    fetch('/cart', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        products: itemNames,
-        cartValue: itemTotal,
-        user: itemUserId,
-      })
-    })
-    .then(
-      location.assign('/checkout')
-  )
-    .then(data => {
-        console.log(data);
-      })
-    .catch(err => {
-        console.log(err);
+        let itemPrice = parseFloat(item.getAttribute('price'));
+        let itemName = item.getAttribute('name');
+        totalCost = cartTotal(itemPrice);
+
+
+        itemNamesArray.push(itemName);
+        priceArray.push(itemPrice);
+
+        // Clear the div to avoid duplicate values
+        displayItem.innerHTML = '';
+
+        for (let i = 0; i < itemNamesArray.length; i++) {
+      displayItem.innerHTML += `${i + 1}. ${itemNamesArray[i]} @ ${priceArray[i]} <br>`;
+    }
+
+        // displayItem.innerHTML += `- ${itemName} @ ${itemPrice} <a class="text-danger border-0">Remove </a><br>`;
+        displayCost.textContent = "Total Cost: " + totalCost;
+
+        logInformation();
       });
-  })
-  
-}
-// You can also log the total cost outside the click events if needed
-totalCost = priceArray.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    });
+
+    function logInformation() {
+      checkout.addEventListener('click', (e) => {
+        e.preventDefault();
+        let itemNames = itemNamesArray.join(',');
+        let itemTotal = totalCost;
+        let itemUserId = userId;
+
+        console.log("Starting fetch")
+        fetch('/cart', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            products: itemNames,
+            cartValue: itemTotal,
+            user: itemUserId,
+          })
+        })
+          .then(
+            location.assign('/checkout')
+          )
+          .then(data => {
+            console.log(data);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      })
+
+    }
+    // You can also log the total cost outside the click events if needed
+    totalCost = priceArray.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 
 
 
