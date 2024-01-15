@@ -27,9 +27,9 @@
               <img src="<%= item.photo %>" title="<%=item.item_name%>" class="card-img-top border"
                 alt="<%= item.item_name %>" height="100%" style="object-fit: cover;">
               <div class="card-body">
-                <p class="card-text"><strong>Price:</strong> <span id="price">
+                <p class="card-text"><strong>Price: <span id="price">
                     <%= item.price %>
-                  </span></p>
+                  </span>KSH</strong></p>
                 <p class="card-text text-success">in stock</p>
                 <% if (user) { %>
                   <a class="cart addcartbtn btn btn-success btn-sm" id="addcartbtn" name="<%= item.item_name %>"
