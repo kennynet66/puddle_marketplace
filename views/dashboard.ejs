@@ -36,9 +36,8 @@
                     price="<%= item.price %>" src="<%= item.photo %>">Add to cart</a>
                   <% } %>
                     <% if (admin) { %>
-                      <a class="cart btn btn-success btn-sm"
-                        href="/cart?adminid=<%= admin._id %>&itemid=<%= item.id %>&name=<%= item.item_name %>">Add to
-                        cart</a>
+                      <a class="cart addcartbtn btn btn-success btn-sm" id="addcartbtn" name="<%= item.item_name %>"
+                        price="<%= item.price %>" src="<%= item.photo %>">Add to cart</a>
                       <% } %>
                         <a href="/item/search?id=<%= item._id %>&name=<%= item.item_name %>"
                           class="btn btn-success btn-sm">View
@@ -51,7 +50,5 @@
       </div>
     </div>
   </header>
-
-  <script src="../public/cartFront.js"></script>
 
   <%- include('partials/footer'); -%>

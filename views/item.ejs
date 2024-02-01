@@ -30,8 +30,9 @@
           <p class="text-white lead">Price: <%= viewitem.price %>
           </p>
           <p class="text-white lead">Item Category: <%= viewitem.category %>
-          </p>
-          <a href="#" class="btn m-2 btn-warning">Add to cart</a>
+          </p><a class="cart addcartbtn btn m-2 btn-warning" id="addcartbtn" name="<%= viewitem.item_name %>"
+            price="<%= viewitem.price %>" src="<%= viewitem.photo %>">Add to cart</a>
+          <!-- <a href="#" class="btn addcartbtn m-2 btn-warning">Add to cart</a> -->
           <a href="/dashboard" class="btn m-2 btn-danger">Back</a>
         </div>
       </div>

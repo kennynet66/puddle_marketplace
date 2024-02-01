@@ -1,8 +1,9 @@
 
-const displayCost = document.querySelector('.totalcost');
-const items = document.querySelectorAll('.addcartbtn');
+let displayCost = document.querySelector('.totalcost');
+let items = document.querySelectorAll('.addcartbtn');
 let update = document.querySelector('.update');
-const displayItem = document.querySelector('.displayitem');
+let displayItem = document.querySelector('.displayitem');
+let searchForm = document.querySelector('.searchform');
 update.textContent = 0
 
 let cart = [];
@@ -69,7 +70,7 @@ function displayCart(){
       prodPrice.textContent = `Ksh ${item.itemPrice}`;
 
       let delBtn = document.createElement('button');
-      delBtn.className = 'del-btn';
+      delBtn.className = 'del-btn btn m-2 btn-danger';
       delBtn.textContent = "Remove"
       delBtn.addEventListener('click', () => {
         delCartItem();
@@ -105,3 +106,9 @@ function delCartItem(index) {
   doMath();
   displayCart();
 }
+
+
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log(searchData)
+})
