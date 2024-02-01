@@ -29,3 +29,31 @@ body {
 .item-card:hover {
     box-shadow: 0 0 10px #ffed9d;
   }
+
+  .cartitem {
+    display: flex;
+    /* width: 50%; */
+    max-width: 500px;
+    margin: 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .prodimg {
+    width: 50px;
+    border-radius: 5px;
+    height: 50px;
+    object-fit: cover;
+  }
+
+  .prodname, .prodprice {
+    font-weight: bold;
+  }
+
+  .del-btn {
+    background-color: red;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: #ffffff;
+  }
