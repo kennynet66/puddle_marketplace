@@ -22,6 +22,7 @@ form.addEventListener('submit', async (e) => {
         if (data.errors) {
             emailerr.textContent = data.errors.email;
             passerr.textContent = data.errors.password;
+            console.log(data);
         }
         if (data.user) {
             location.assign('/dashboard');

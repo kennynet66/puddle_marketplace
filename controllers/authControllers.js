@@ -14,8 +14,8 @@ const handleErrors = (err) => {
         errors.email = 'Email not found';
         return errors;
     }
-    if (err.message === 'invalid password') {
-        errors.email = 'Incorrect password';
+    if (err.message === 'Invalid password') {
+        errors.password = 'Incorrect password';
         return errors;
     }
     // Handle duplicate emails
