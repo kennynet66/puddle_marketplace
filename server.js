@@ -2,6 +2,7 @@
 const adminRoutes = require('./routes/adminRoutes');
 const itemRoutes = require('./routes/itemRoutes');
 const authRoutes = require('./routes/authRoutes');
+const letterRoutes = require('./routes/letterRoutes');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes/routes');
 const mongoose = require('mongoose')
@@ -30,6 +31,7 @@ app.use(routes);
 app.use(authRoutes);
 app.use(itemRoutes);
 app.use(adminRoutes);
+app.use(letterRoutes);
 
 
 // connect to the database

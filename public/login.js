@@ -6,23 +6,33 @@ form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     //reset errors
-    emailerr.textContent='';
-    passerr.textContent='';
+    emailerr.textContent = '';
+    passerr.textContent = '';
 
     const email = form.email.value;
     const password = form.password.value;
 
+    const showError = (error) => {
+        Swal.fire({
+            title: 'Error!',
+            text: error,
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    };
+
     try {
-        const res = await fetch('/login',{
+        const res = await fetch('/login', {
             method: 'POST',
-            body: JSON.stringify({ email,password }),
-            headers: { 'Content-Type' : 'application/json' }
+            body: JSON.stringify({ email, password }),
+            headers: { 'Content-Type': 'application/json' }
         });
         const data = await res.json();
-        if (data.errors) {
-            emailerr.textContent = data.errors.email;
-            passerr.textContent = data.errors.password;
-            console.log(data);
+        console.log(data);
+        if (data.errors.email) {
+            return showError(data.errors.email)
+        } else if(data.errors.password) {
+            showError(data.errors.password)
         }
         if (data.user) {
             location.assign('/dashboard');
