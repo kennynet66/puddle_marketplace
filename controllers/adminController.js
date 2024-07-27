@@ -89,7 +89,7 @@ module.exports.create_post = async (req,res) => {
 
     try {
         const admin = await Admin.create({ full_name, email, password })
-        res.status(200).json({ admin })
+        res.status(200).json({ admin });
     }
     catch (err) {
         const errors = handleErrors(err)
@@ -103,12 +103,15 @@ module.exports.item_get = (req,res) => {
 }
 
 module.exports.item_post = async (req, res) => {
+    console.log(req.body);
     let newItem = {
         item_name: req.body.item_name,
         price: req.body.price,
         description: req.body.description,
-        category: req.body.category
+        category: req.body.category,
+        author: req.body.author
     };
+    
 
     if (req.file) {
         newItem.photo = req.file.path;

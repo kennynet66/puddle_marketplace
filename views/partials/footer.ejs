@@ -52,6 +52,8 @@
     <link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico" />
     <meta name="theme-color" content="#712cf9" />
 
+    <script src="https://kit.fontawesome.com/6d42b9e43a.js" crossorigin="anonymous"></script>
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -253,6 +255,16 @@
             icon: "success",
             confirmButtonText: "OK",
           });
+
+          letterForm.reset()
+        } else {
+          Swal.fire({
+            title: "Error!",
+            text: "An error occured please try again later",
+            icon: "error",
+            confirmButtonText: "OK",
+          });
+          letterForm.reset()
         }
       });
     </script>

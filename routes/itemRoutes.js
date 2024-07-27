@@ -5,5 +5,6 @@ const { addItem, requireAuth } = require('../middleware/authMiddleware');
 const router = Router();
 
 router.get('/item/search', requireAuth, itemController.item_get);
+router.get('/items', requireAuth, itemController.all_items);
 
 module.exports = router

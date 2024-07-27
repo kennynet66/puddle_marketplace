@@ -8,15 +8,15 @@
 			<h1 class="text-white">Create New item</h1>
 			<div class="mb-3">
 				<label for="item_name" class="form-label text-white">Item name: </label><br>
-				<input type="text" class="form-control" name="item_name">
+				<input type="text" class="form-control" name="item_name" placeholder="Item name">
 			</div>
 			<div class="mb-3">
 				<label for="price" class="form-label text-white">Price: </label><br>
-				<input type="number" class="form-control" name="price">
+				<input type="number" class="form-control" name="price" placeholder="Item number">
 			</div>
 			<div class="mb-3">
 				<label for="description" class="form-label text-white">Description: </label><br>
-				<textarea type="text" class="form-control" name="description"> </textarea>
+				<textarea type="text" class="form-control" name="description" placeholder="Item description"> </textarea>
 			</div>
 			<div class="mb-3">
 				<label for="photo" class="form-label text-white">item photo: </label><br>
@@ -39,6 +39,10 @@
 					<option value="Furniture">Furniture</option>
 					<option value="Office and school supplies">Office and school supplies</option>
 				</select>
+			</div>
+			<div class="mb-3">
+				<label for="author" class="form-label text-white">Author:</label><br>
+				<input type="email" name="author" id="author" value="<%= admin.email %>" readonly class="form-control">
 			</div>
 			<div class="error div text-danger"></div>
 			<button class="btn btn-success">Create</button>

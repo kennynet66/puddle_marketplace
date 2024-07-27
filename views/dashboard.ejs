@@ -1,54 +1,208 @@
 <%- include('partials/header'); -%>
 
-  <title>Puddle | Dashboard</title>
+<title>Puddle | Dashboard</title>
 
-  <!-- 
+<!-- 
   - This will display the user's dashboard.
   - The user's profile which appears as an off canvas when the profile button is clicked.
   - The dashboard contains a graphical representation and description of the items available for sale.
  -->
 
-  <header>
+<header>
+  <!-- Search area to be displayed on medium & small screens -->
+  <form class="d-lg-none d-flex m-2">
+    <input
+      class="form-control me-2 w-75"
+      type="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
+    <button class="btn btn-outline-success">
+      <i class="bi bi-search"></i>
+    </button>
+  </form>
 
-    <!-- Search area to be displayed on medium & small screens -->
-    <form class="d-lg-none d-flex m-2">
-      <input class="form-control me-2 w-75" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success"><i class="bi bi-search"></i></button>
-    </form>
-
-    <div class="container-xxl d-flex ">
-      <div class="row p-0 justify-content-center d-flex col">
-        <% if (items && items.length> 0) { %>
-          <% items.forEach(item=> { %>
-            <div class="card item-card m-2 p-2" style="width: 18rem;">
-              <p class="card-text"> <strong>
-                  <%= item.item_name %>
-                </strong></p>
-              <img src="<%= item.photo %>" title="<%=item.item_name%>" class="card-img-top border"
-                alt="<%= item.item_name %>" height="100%" style="object-fit: cover;">
-              <div class="card-body">
-                <p class="card-text"><strong>Price: <span id="price">
-                    <%= item.price %>
-                  </span>KSH</strong></p>
-                <p class="card-text text-success">in stock</p>
-                <% if (user) { %>
-                  <a class="cart addcartbtn btn btn-success btn-sm" id="addcartbtn" name="<%= item.item_name %>"
-                    price="<%= item.price %>" src="<%= item.photo %>">Add to cart</a>
-                  <% } %>
-                    <% if (admin) { %>
-                      <a class="cart addcartbtn btn btn-success btn-sm" id="addcartbtn" name="<%= item.item_name %>"
-                        price="<%= item.price %>" src="<%= item.photo %>">Add to cart</a>
-                      <% } %>
-                        <a href="/item/search?id=<%= item._id %>&name=<%= item.item_name %>"
-                          class="btn btn-success btn-sm">View
-                          item</a>
-              </div>
-            </div>
-            <% })} else { %>
-              <h1 class="text-white text-center display-4 lead"> No Items Available</h1>
-              <% } %>
-      </div>
+  <div class="container-xxl d-flex">
+    <% if (items && items.length> 0) { %> <% items.forEach(item=> { %>
+    <div class="row p-0 justify-content-center d-flex col parent">
+      <% })} else { %>
+      <h1 class="text-white text-center display-4 lead">No Items Available</h1>
+      <% } %>
     </div>
-  </header>
+  </div>
+</header>
 
-  <%- include('partials/footer'); -%>
+<script>
+  const parentContainer = document.querySelector(".parent"); // Grab the parent container for the cards
+  const productsArr = []; // Create a products array
+  const cart = []; //Create a cart array
+  const displayItem = document.querySelector(".displayitem");
+
+  const fetchProducts = async () => {
+    const data = await fetch("http://localhost:3002/items");
+
+    const products = await data.json();
+    displayProducts(products.products);
+  };
+
+  const displayProducts = (products) => {
+    parentContainer.textContent = "";
+    products.forEach((product) => {
+      const card = document.createElement("div"); // First div
+      card.className = "card item-card m-2 p-2";
+      card.style = "width: 18rem; cursor:pointer;";
+
+      // Item name
+      const pTag = document.createElement("p");
+      pTag.className = "card-text";
+
+      itemName = document.createElement("strong");
+      itemName.textContent = product.item_name;
+
+      // Item image
+      const itemImage = document.createElement("img");
+      itemImage.src = product.photo;
+      itemImage.title = product.item_name;
+      itemImage.className = "card-img-top border";
+      itemImage.alt = product.item_name;
+      itemImage.style = "object-fit: cover; height: 100%;";
+
+      // Card body
+      const cardBody = document.createElement("div");
+      cardBody.className = "card-body";
+
+      // Card text
+      const ptag = document.createElement("p");
+      ptag.className = "card-text";
+      const cardText = document.createElement("strong");
+      cardText.textContent = `Price: ${product.price}`;
+
+      const cartBtn = document.createElement("button");
+      cartBtn.className = "cart addcartbtn btn btn-success btn-sm m-2";
+      cartBtn.textContent = "Add to cart";
+
+      cartBtn.addEventListener("click", (e) => {
+        addToCart(product);
+      });
+
+      const viewItem = document.createElement("a");
+      viewItem.href = `/item/search?id=${product._id}&name=${product.item_name}`;
+      viewItem.className = "btn btn-success btn-sm m-2";
+      viewItem.textContent = "View item";
+
+      ptag.appendChild(cardText);
+      cardBody.appendChild(ptag);
+      pTag.appendChild(itemName);
+      card.appendChild(pTag);
+      card.appendChild(itemImage);
+      card.appendChild(cardBody);
+      cardBody.appendChild(cartBtn);
+      cardBody.appendChild(viewItem);
+      parentContainer.appendChild(card);
+    });
+  };
+
+  fetchProducts();
+
+  const addToCart = (product) => {
+    cart.push(product);
+    displayCart();
+    doMath();
+    showSuccess("Added to cart");
+  };
+
+  const displayCart = () => {
+    if (cart.length >= 1) {
+      displayItem.textContent = "";
+
+      cart.forEach((item, index) => {
+        // update.textContent = badge;
+        let cartItem = document.createElement("div");
+        cartItem.className = "cartitem";
+
+        let prodImg = document.createElement("img");
+        prodImg.className = "prodimg";
+        prodImg.src = item.photo;
+
+        let prodName = document.createElement("p");
+        prodName.className = "prodname";
+        prodName.textContent = item.item_name;
+
+        let qty = document.createElement("p");
+        qty.className = "qty";
+        qty.textContent = item.quantity;
+
+        let prodPrice = document.createElement("p");
+        prodPrice.className = "prodprice";
+        prodPrice.textContent = `Ksh ${item.price}`;
+
+        let delBtn = document.createElement("i");
+        delBtn.className = "del-btn btn m-2 btn-danger fa-solid fa-trash";
+        delBtn.addEventListener("click", () => {
+          delCartItem(index);
+        });
+
+        cartItem.appendChild(prodImg);
+        cartItem.appendChild(prodName);
+        cartItem.appendChild(qty);
+        cartItem.appendChild(prodPrice);
+        cartItem.appendChild(delBtn);
+
+        displayItem.appendChild(cartItem);
+      });
+    } else {
+      displayItem.textContent = "No items in your cart";
+    }
+  };
+  const delCartItem = (index) => {
+    cart.splice(index, 1);
+    displayCart();
+    showError("Removed from cart");
+    doMath();
+  };
+
+  // Handle cart calculations
+  let update = document.querySelector(".update");
+  let displayCost = document.querySelector(".totalcost");
+  const doMath = () => {
+    update.textContent = cart.length;
+    let totalcost = 0;
+    cart.forEach((item) => {
+      totalcost += parseFloat(item.price);
+    });
+    console.log(totalcost);
+
+    displayCost.textContent = `Total: ${totalcost}`;
+  };
+  doMath();
+
+  // Toastr
+  $(document).ready(function () {
+    toastr.options = {
+      closeButton: true,
+      debug: false,
+      newestOnTop: false,
+      progressBar: false,
+      positionClass: "toast-top-right",
+      preventDuplicates: false,
+      showDuration: "1000",
+      hideDuration: "1000",
+      timeOut: "5000",
+      extendedTimeOut: "1000",
+      showEasing: "swing",
+      hideEasing: "linear",
+      showMethod: "fadeIn",
+      hideMethod: "fadeOut",
+    };
+  });
+
+  const showSuccess = (msg) => {
+    toastr.success(msg);
+  };
+
+  const showError = (msg) => {
+    toastr.error(msg)
+  };
+</script>
+
+<%- include('partials/footer'); -%>

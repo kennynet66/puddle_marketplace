@@ -36,3 +36,19 @@ module.exports.item_get = async (req, res) => {
         res.render('404');
     }
 }
+
+module.exports.all_items = async (req, res) => {
+    try { 
+        const products = await Item.find({});
+
+        res.status(200).json({
+            products
+        })
+    }
+    catch (error) {
+        res.status(500).json({
+            Error: "Internal server error",
+            error
+        })
+    }
+}

@@ -1,4 +1,4 @@
-const form = document.querySelector('form');
+const form = document.querySelector('.form');
 const emailerr = document.querySelector('.emailerr');
 const passerr = document.querySelector('.passerr');
 
@@ -29,12 +29,13 @@ form.addEventListener('submit', async (e) => {
         });
         const data = await res.json();
         console.log(data);
-        if (data.errors.email) {
-            return showError(data.errors.email)
-        } else if(data.errors.password) {
-            showError(data.errors.password)
-        }
-        if (data.user) {
+        if(data.errors) {
+            if (data.errors.email) {
+                return showError(data.errors.email)
+            } else if(data.errors.password) {
+                return showError(data.errors.password)
+            }
+        } else if (data.user) {
             location.assign('/dashboard');
         }
     } catch (err) {

@@ -7,7 +7,7 @@ module.exports.subscribe =  (async(req, res) => {
         const letter = await NewsLetter.create({email});
 
         res.status(200).json({
-            success: "Successfully subscribed to news letter"
+            success: "Successfully subscribed to the news letter"
         });
 
 

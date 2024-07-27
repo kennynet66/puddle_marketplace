@@ -20,6 +20,10 @@ const itemSchema = new mongoose.Schema({
     category: {
         type: String,
         required: [true, 'item category required']
+    },
+    author: {
+        type: String,
+        required: [true, 'Author is required']
     }
 });
 

@@ -1,26 +1,27 @@
-
+/* 
 let displayCost = document.querySelector('.totalcost');
-let items = document.querySelectorAll('.addcartbtn');
+let cartButtons = document.querySelectorAll('.addcartbtn');
 let update = document.querySelector('.update');
 let displayItem = document.querySelector('.displayitem');
 let searchForm = document.querySelector('.searchform');
 update.textContent = 0
 
 let cart = [];
+let badge = 0;
 
 window.onload = () => {
   let data = localStorage.getItem('cart');
   data = JSON.parse(data)
-if (data) {
-  data.forEach((el) => {
-    cart.push(el)
-  })
-  displayCart()
-  doMath();
-} else {
-  doMath();
-  displayCart();
-}
+  if (data) {
+    data.forEach((el) => {
+      cart.push(el)
+    })
+    displayCart()
+    doMath();
+  } else {
+    doMath();
+    displayCart();
+  }
 };
 
 let totalCost = 0;
@@ -29,32 +30,32 @@ let currentCost = 0;
 update.textContent = '0';
 displayCost.textContent = 'Total Cost: 00';
 
-let badge = 0;
+const addToCart = (name, price, photo, item_id) => {
+  const item = {
+    item_name: name,
+    price: price,
+    image: photo,
+    item_id: item_id,
+  };
+  cart.push(item);
+  saveCart();
+  doMath();
+  displayCart();
 
-items.forEach((item, index) => {
-  // console.log(item)
-  let price = parseFloat(item.getAttribute('price'));
-  let img = item.getAttribute('src');
-  item.addEventListener('click', () => {
-    let newItem = {itemName: item.name, itemPrice: price, image: img}
-    cart.push(newItem);
-    saveCart(cart);
-    displayCart()
-    doMath();
-  });
-});
+};
 
-function saveCart(items) {
-  localStorage.setItem('cart', JSON.stringify(items));
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 
-function displayCart(){
-  if(cart.length >= 1) {
+function displayCart() {
+  if (cart.length >= 1) {
     displayItem.textContent = "";
-    cart.forEach((item) => {
-    update.textContent = badge;
-    let cartItem = document.createElement('div');
+
+    cart.forEach((item, index) => {
+      update.textContent = badge;
+      let cartItem = document.createElement('div');
       cartItem.className = "cartitem";
 
       let prodImg = document.createElement('img');
@@ -63,21 +64,24 @@ function displayCart(){
 
       let prodName = document.createElement('p');
       prodName.className = "prodname";
-      prodName.textContent = item.itemName;
+      prodName.textContent = item.item_name;
+
+      let qty = document.createElement('p');
+      qty.className = "qty";
+      qty.textContent = item.quantity
 
       let prodPrice = document.createElement('p');
       prodPrice.className = "prodprice";
-      prodPrice.textContent = `Ksh ${item.itemPrice}`;
+      prodPrice.textContent = `Ksh ${item.price}`;
 
-      let delBtn = document.createElement('button');
-      delBtn.className = 'del-btn btn m-2 btn-danger';
-      delBtn.textContent = "Remove"
+      let delBtn = document.createElement('i');
+      delBtn.className = 'del-btn btn m-2 btn-danger fa-solid fa-trash';
       delBtn.addEventListener('click', () => {
-        delCartItem();
+        delCartItem(index);
       })
 
-      cartItem.appendChild(prodImg);
       cartItem.appendChild(prodName);
+      cartItem.appendChild(qty);
       cartItem.appendChild(prodPrice);
       cartItem.appendChild(delBtn);
 
@@ -90,25 +94,27 @@ function displayCart(){
 
 
 function doMath() {
-  let badge = 0;
   let totalCost = 0
   cart.forEach((el) => {
-    badge += 1
-    totalCost += el.itemPrice;
+    totalCost += parseFloat(el.price);
   });
-  update.textContent = badge;
+  update.textContent = cart.length;
   displayCost.textContent = `Total Cost: ${totalCost}`;
 }
 
 function delCartItem(index) {
-  cart.splice(index,1)
-  saveCart(cart)
+  cart.splice(index, 1)
+  saveCart()
   doMath();
   displayCart();
 }
 
 
 searchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log(searchData)
+  e.preventDefault();
+  console.log(searchData)
 })
+
+function checkout() {
+  console.log("Checkout process begin", cart)
+} */

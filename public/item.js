@@ -11,6 +11,7 @@ form.addEventListener('submit', async (e) => {
     const photoFile = form.photo.files[0];
     const description = form.description.value;
     const category = form.category.value;
+    const author = form.author.value;
 
     const formData = new FormData();
     formData.append('photo', photoFile);
@@ -18,8 +19,7 @@ form.addEventListener('submit', async (e) => {
     formData.append('price', price);
     formData.append('description', description);
     formData.append('category', category);
-
-    console.log(formData)
+    formData.append('author', author)
 
     try {
         const res = await fetch('/new/item', {
@@ -35,7 +35,7 @@ form.addEventListener('submit', async (e) => {
         }
 
         if (data.item) {
-            location.reload();
+            form.reset();
         }
     } catch (err) {
         console.log(err);

@@ -1,0 +1,6 @@
+POST http://localhost:3002/forgot
+Content-Type: application/json
+
+{
+    "email": "kenedymaina634@gmail.com"
+}
